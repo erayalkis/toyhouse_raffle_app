@@ -1,16 +1,10 @@
 <template>
   <div class="app">
-    <form id="load-user-form">
+    <form id="load-user-form" @submit.prevent="loadCharacter">
       <input name="load-user-input" placeholder="Enter raffle character URL..." />
     </form>
   </div>
 </template>
 
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
+<script setup>
 </script>
