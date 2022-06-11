@@ -55,8 +55,13 @@
   }
 
   const fetchTickets = async (id) => {
+    messages.loading = "Fetching participant data..."
+    if(shouldSub.value) messages.loading += " (this might take a while...)";
+
     const users = await fetch(`https://toyhouse-rails-api.herokuapp.com/raffle/${id}?`);
     console.log(users.json);
+    messages.loading = ""
+
     return await users.json();
   }
 
