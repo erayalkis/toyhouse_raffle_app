@@ -17,7 +17,7 @@
     messages.clearError();
 
     const characterUrl = e.target.elements[0].value;
-    if(!characterUrl || characterUrl.startsWith("https://toyhou.se")) {
+    if(!characterUrl || !characterUrl.startsWith("https://toyhou.se")) {
       messages.setError("Please enter a valid Toyhou.se link!");
       return;
     }
