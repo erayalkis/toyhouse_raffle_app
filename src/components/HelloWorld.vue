@@ -7,4 +7,10 @@
 </template>
 
 <script setup>
+
+  const loadCharacter = (e) => {
+    const characterUrl = e.target.elements[0].value;
+    console.log(characterUrl);
+  }
+
 </script>
