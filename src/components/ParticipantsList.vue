@@ -1,17 +1,24 @@
 <template>
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
-  <input type="text" placeholder="Search user by name..." v-model="query" />
-  <div class="participants-wrapper">
-    <div class="participants-list">
-      <template v-for="(details, username) in filteredUsers" :key="username">
-        <div class="participant">
-          <img class="participant-image" :src="details.image" />
-          <p>Name: {{username}}</p>
-          <p>Tickets: {{details.ticket_count}}</p>
-        </div>
-      </template>
+  <template v-if="!participants.loaded">
+    <div>
+      <h1>No participants loaded!</h1>
     </div>
-  </div>
+  </template>
+  <template v-else>
+    <input type="text" placeholder="Search user by name..." v-model="query" />
+    <div class="participants-wrapper">
+      <div class="participants-list">
+        <template v-for="(details, username) in filteredUsers" :key="username">
+          <div class="participant">
+            <img class="participant-image" :src="details.image" />
+            <p>Name: {{username}}</p>
+            <p>Tickets: {{details.ticket_count}}</p>
+          </div>
+        </template>
+      </div>
+    </div>
+  </template>
 </template>
 
 <script setup>
