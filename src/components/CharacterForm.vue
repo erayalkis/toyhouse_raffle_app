@@ -18,7 +18,7 @@
           <li>
             <label for="commentCount">For how many extra tickets?</label>
             <br />
-            <input type="number" />
+            <input type="number" min="0" v-model="commentCount" />
           </li>
       </template>
       <li>
@@ -29,7 +29,7 @@
           <li>
             <label for="subCount">For how many extra tickets?</label>
             <br />
-            <input type="number" />
+            <input type="number" min="0" v-model="subCount" />
           </li>
       </template>
     </ul>
@@ -48,6 +48,8 @@
   const urlInput = ref('');
   const shouldComment = ref(false);
   const shouldSub = ref(false);
+  const subCount = ref(1);
+  const commentCount = ref(1);
   const buttonText = computed(() => {
     return participants.loaded ? "Participants loaded" : "Load users";
   });
