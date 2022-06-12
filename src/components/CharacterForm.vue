@@ -66,8 +66,6 @@
     }
     
     const characterId = parseCharacterUrl(characterUrl);
-    console.log(characterId);
-
     const users = await fetchTickets(characterId);
     participants.setParticipants(users);
     urlInput.value = '';
@@ -83,7 +81,6 @@
     if(shouldSub.value) messages.loading += " (this might take a while...)";
 
     const users = await fetch(createApiUrl(id));
-    console.log(users.json);
     messages.loading = ""
 
     participants.loaded = true;
@@ -103,7 +100,6 @@
       base += `subscribe_ticket_count=${commentCount.value}&`;
     }
 
-    console.log(base);
     return base;
   }
 

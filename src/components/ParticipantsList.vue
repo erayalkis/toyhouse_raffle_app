@@ -26,17 +26,14 @@
   const query = ref('');
 
   const filteredUsers = computed(() => {
+    if(query.value.length == 0) return participants.list;
     const newObj = {};
 
     let keys = Object.keys(participants.list);
 
-    console.log(keys);
     keys.forEach((key) => {
-      console.log(key);
-      console.log(query.value);
       if(key.toLowerCase().includes(query.value.toLowerCase())) {
         newObj[key] = participants.list[key];
-        console.log(newObj[key]);
       }
     })
 
