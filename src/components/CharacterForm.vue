@@ -2,10 +2,13 @@
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <div class="app">
     <form id="load-user-form" @submit.prevent="loadCharacter">
-      <input name="load-user-input" placeholder="Enter raffle character URL..." v-model="urlInput" />
+      <input name="load-user-input" :disabled="participants.loaded" 
+        placeholder="Enter raffle character URL..." v-model="urlInput" />
       <button type="submit" :disabled="participants.loaded">{{buttonText}}</button>
     </form>
-
+    <button v-if="participants.loaded" @click="participants.deleteParticipants">
+      Delete current participants list?
+    </button>
     <ul>
       <li>
         <label for="shouldComment">User should comment?</label>

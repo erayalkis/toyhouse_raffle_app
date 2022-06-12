@@ -7,6 +7,10 @@ export const participants = reactive({
     console.log(obj);
     this.list = obj;
     console.log(this.list);
+  },
+  deleteParticipants() {
+    this.list = {};
+    this.loaded = false;
   }
 });
 
