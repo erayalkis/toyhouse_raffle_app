@@ -14,10 +14,24 @@
         <label for="shouldComment">User should comment?</label>
         <input type="checkbox" id="shouldComment" v-model="shouldComment" />
       </li>
+      <template v-if="shouldComment">
+          <li>
+            <label for="commentCount">For how many extra tickets?</label>
+            <br />
+            <input type="number" />
+          </li>
+      </template>
       <li>
         <label for="shouldSubscribe">User should subscribe?</label>
         <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
       </li>
+      <template v-if="shouldSub">
+          <li>
+            <label for="subCount">For how many extra tickets?</label>
+            <br />
+            <input type="number" />
+          </li>
+      </template>
     </ul>
 
     <p v-if="messages.error">{{messages.error}}</p>
