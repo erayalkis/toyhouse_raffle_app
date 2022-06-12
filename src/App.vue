@@ -3,8 +3,8 @@
     <!-- use the router-link component for navigation. -->
     <!-- specify the link by passing the `to` prop. -->
     <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
-    <router-link to="/">Go to Home</router-link>
-    <router-link to="/participants">Go to About</router-link>
+    <router-link class="router-link" to="/">Go to Home</router-link>
+    <router-link class="router-link" to="/participants">Go to Participants</router-link>
   </p>
   <!-- route outlet -->
   <!-- component matched by the route will render here -->
@@ -19,5 +19,9 @@
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.router-link {
+  margin: 5px;
 }
 </style>
