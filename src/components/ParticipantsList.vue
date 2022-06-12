@@ -1,8 +1,9 @@
 <template>
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
+  <input type="text" placeholder="Search user by name..." v-model="query" />
   <div class="participants-wrapper">
     <div class="participants-list">
-      <template v-for="(details, username) in participants.list" :key="username">
+      <template v-for="(details, username) in filteredUsers" :key="username">
         <div class="participant">
           <img class="participant-image" :src="details.image" />
           <p>Name: {{username}}</p>
@@ -15,6 +16,27 @@
 
 <script setup>
   import { participants } from '@/state/participants';
+  import { computed, ref } from 'vue';
+
+  const query = ref('');
+
+  const filteredUsers = computed(() => {
+    const newObj = {};
+
+    let keys = Object.keys(participants.list);
+
+    console.log(keys);
+    keys.forEach((key) => {
+      console.log(key);
+      console.log(query.value);
+      if(key.toLowerCase().includes(query.value.toLowerCase())) {
+        newObj[key] = participants.list[key];
+        console.log(newObj[key]);
+      }
+    })
+
+    return newObj;
+  })
 </script>
 
 <style scoped>
