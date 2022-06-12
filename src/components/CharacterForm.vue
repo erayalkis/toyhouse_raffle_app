@@ -3,7 +3,7 @@
   <div class="app">
     <form id="load-user-form" @submit.prevent="loadCharacter">
       <input name="load-user-input" placeholder="Enter raffle character URL..." v-model="urlInput" />
-      <button type="submit">Load Characters</button>
+      <button type="submit" :disabled="participants.loaded">{{buttonText}}</button>
     </form>
 
     <ul>
@@ -26,11 +26,14 @@
 <script setup>  
   import { messages } from '@/state/messages';
   import { participants } from '@/state/participants';
-  import { ref } from 'vue';
+  import { ref, computed } from 'vue';
   
   const urlInput = ref('');
   const shouldComment = ref(false);
   const shouldSub = ref(false);
+  const buttonText = computed(() => {
+    return participants.loaded ? "Participants loaded" : "Load users";
+  });
 
   const loadCharacter = async () => {
     messages.clearError();
@@ -62,6 +65,7 @@
     console.log(users.json);
     messages.loading = ""
 
+    participants.loaded = true;
     return await users.json();
   }
 
