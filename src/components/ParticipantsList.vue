@@ -14,6 +14,8 @@
             <img class="participant-image" :src="details.image" />
             <p>Name: {{username}}</p>
             <p>Tickets: {{details.ticket_count}}</p>
+            <button @click="details.ticket_count += 1">+</button>
+            <button @click="details.ticket_count -= 1">-</button>
           </div>
         </template>
       </div>
