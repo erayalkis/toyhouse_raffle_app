@@ -80,12 +80,29 @@
     messages.loading = "Fetching participant data..."
     if(shouldSub.value) messages.loading += " (this might take a while...)";
 
-    const users = await fetch(`https://toyhouse-rails-api.herokuapp.com/raffle/${id}?`);
+    const users = await fetch(createApiUrl(id));
     console.log(users.json);
     messages.loading = ""
 
     participants.loaded = true;
     return await users.json();
+  }
+
+  const createApiUrl = (id) => {
+    let base = `https://toyhouse-rails-api.herokuapp.com/raffle/${id}?`;
+    
+    if(shouldComment.value) { 
+      base += 'must_comment=true&';
+      base += `comment_ticket_count=${subCount.value}`
+    }
+
+    if(shouldSub.value) {
+      base += 'must_subscribe=true&';
+      base += `subscribe_ticket_count=${commentCount.value}`;
+    }
+
+    console.log(base);
+    return base;
   }
 
 
