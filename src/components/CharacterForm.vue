@@ -9,34 +9,36 @@
     <button v-if="participants.loaded" @click="participants.deleteParticipants">
       Delete current participants list?
     </button>
-    <ul>
-      <li>
-        <label for="shouldComment">User should comment?</label>
-        <input type="checkbox" id="shouldComment" v-model="shouldComment" />
-      </li>
-      <template v-if="shouldComment">
-          <li>
-            <label for="commentCount">For how many extra tickets?</label>
-            <br />
-            <input type="number" min="0" v-model="commentCount" />
-          </li>
-      </template>
-      <li>
-        <label for="shouldSubscribe">User should subscribe?</label>
-        <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
-      </li>
-      <template v-if="shouldSub">
-          <li>
-            <label for="subCount">For how many extra tickets?</label>
-            <br />
-            <input type="number" min="0" v-model="subCount" />
-          </li>
-      </template>
-    </ul>
+    <template v-if="!participants.loaded">
+      <ul>
+        <li>
+          <label for="shouldComment">User should comment?</label>
+          <input type="checkbox" id="shouldComment" v-model="shouldComment" />
+        </li>
+        <template v-if="shouldComment">
+            <li>
+              <label for="commentCount">For how many extra tickets?</label>
+              <br />
+              <input type="number" min="0" v-model="commentCount" />
+            </li>
+        </template>
+        <li>
+          <label for="shouldSubscribe">User should subscribe?</label>
+          <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
+        </li>
+        <template v-if="shouldSub">
+            <li>
+              <label for="subCount">For how many extra tickets?</label>
+              <br />
+              <input type="number" min="0" v-model="subCount" />
+            </li>
+        </template>
+      </ul>
+    </template>
 
     <p v-if="messages.error">{{messages.error}}</p>
     <p v-if="messages.loading">{{messages.loading}}</p>
-
+    <p v-if="participants.removed.length > 0">{{participants.removed}}</p>
   </div>
 </template>
 
