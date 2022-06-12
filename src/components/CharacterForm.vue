@@ -23,7 +23,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup>  
   import { messages } from '@/state/messages';
   import { participants } from '@/state/participants';
   import { ref } from 'vue';
@@ -64,5 +64,6 @@
 
     return await users.json();
   }
+
 
 </script>
