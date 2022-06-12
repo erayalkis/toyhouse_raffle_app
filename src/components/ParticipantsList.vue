@@ -10,13 +10,7 @@
     <div class="participants-wrapper">
       <div class="participants-list">
         <template v-for="(details, username) in filteredUsers" :key="username">
-          <div class="participant">
-            <img class="participant-image" :src="details.image" />
-            <p>Name: {{username}}</p>
-            <p>Tickets: {{details.ticket_count}}</p>
-            <button @click="details.ticket_count += 1">+</button>
-            <button @click="details.ticket_count -= 1">-</button>
-          </div>
+          <ParticipantCard :details="details" :username="username" />
         </template>
       </div>
     </div>
@@ -26,6 +20,8 @@
 <script setup>
   import { participants } from '@/state/participants';
   import { computed, ref } from 'vue';
+  import ParticipantCard from './ParticipantCard.vue';
+
 
   const query = ref('');
 
@@ -73,5 +69,21 @@
     border-bottom: 1px solid lightblue;
     width: 200px;
     height: 200px;
+    cursor: pointer;
+  }
+
+  .participant-tickets {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ticket-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+  .ticket-button {
+    align-self: center;
+    width: 20px;
   }
 </style>
