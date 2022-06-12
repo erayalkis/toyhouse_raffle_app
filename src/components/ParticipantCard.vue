@@ -17,12 +17,14 @@
 
   import { participants } from '@/state/participants';
   import { defineProps } from 'vue';
-  const props = defineProps(['username', 'details']);
-  console.log(props);
+  defineProps(['username', 'details']);
 
   const addTicket = (key) => {
-    // details.ticket_count += 1;
     participants.increment(key);
+  }
+
+  const removeTicket = (key) => {
+    participants.decrement(key);
   }
 
 </script>
