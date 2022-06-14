@@ -4,7 +4,7 @@
     <form id="load-user-form" @submit.prevent="loadCharacter">
       <input class="load-user-input" :disabled="participants.loaded" 
         placeholder="Enter raffle character URL..." v-model="urlInput" />
-      <button type="submit" :disabled="participants.loaded">{{buttonText}}</button>
+      <button class="load-user-button" type="submit" :disabled="participants.loaded">{{buttonText}}</button>
     </form>
     <button v-if="participants.loaded" @click="participants.deleteParticipants">
       Delete current participants list?
