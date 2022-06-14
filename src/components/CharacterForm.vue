@@ -2,7 +2,7 @@
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <div class="app">
     <form id="load-user-form" @submit.prevent="loadCharacter">
-      <input name="load-user-input" :disabled="participants.loaded" 
+      <input class="load-user-input" :disabled="participants.loaded" 
         placeholder="Enter raffle character URL..." v-model="urlInput" />
       <button type="submit" :disabled="participants.loaded">{{buttonText}}</button>
     </form>
@@ -102,6 +102,7 @@
 
     return base;
   }
-
-
 </script>
+
+<style scoped>
+</style>
