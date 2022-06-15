@@ -39,6 +39,7 @@
     <p v-if="messages.error">{{messages.error}}</p>
     <p v-if="messages.loading">{{messages.loading}}</p>
     <p v-if="participants.removed.length > 0">{{participants.removed}}</p>
+    <p v-if="participants.changed.length">{{participants.changed}}</p>
     </div>
   </template>
 
