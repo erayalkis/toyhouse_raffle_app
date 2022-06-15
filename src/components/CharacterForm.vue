@@ -1,13 +1,11 @@
 <template>
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <div class="form-wrapper">
-    <div>
       <form id="load-user-form" @submit.prevent="loadCharacter">
         <input class="load-user-input" :disabled="participants.loaded" 
           placeholder="Enter raffle character URL..." v-model="urlInput" />
         <button class="load-user-button" type="submit" :disabled="participants.loaded">{{buttonText}}</button>
       </form>
-      </div>
     <button v-if="participants.loaded" @click="participants.deleteParticipants">
       Delete current participants list?
     </button>
@@ -108,24 +106,29 @@
 
 <style scoped>
   .load-user-input {
-    width: 80%;
-    height: 3em;
+    width: 30em;
+    height: 3.5em;
+    padding: 10px;
     font-size: 17px;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
     border: 1px solid rgb(157, 236, 236);
-
+    box-sizing: border-box;
+  }
+  
+  .load-user-input::placeholder {
+    padding-left: 5px;
   }
   .load-user-button {
-    height: 40px;
+    height: 4.5em;
     border: 0;
-    border-radius: 5px;
+    border-radius: 0 5px 5px 0;
     border: 1px solid cyan;
   }
 
   .form-wrapper {
     border: 1px solid grey;
     height: 20em;
-    width: 30em;
+    width: 50em;
     background-color: white;
     border-radius: 10px;
     display: flex;
