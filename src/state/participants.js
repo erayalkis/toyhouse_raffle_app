@@ -2,7 +2,9 @@ import { reactive } from 'vue'
 
 export const participants = reactive({
   list: {},
-  changed: [],
+  // Holds original values, list holds changed values
+  // I know its confusing
+  changed: {},
   removed: [],
   loaded: false,
   setParticipants(obj) {
@@ -12,8 +14,6 @@ export const participants = reactive({
     this.list = {};
     this.loaded = false;
     this.removed = [];
-    // Holds original values, list holds changed values
-    // I know its confusing
     this.changed = {};
   },
   remove(key) {
