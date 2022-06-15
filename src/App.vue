@@ -51,7 +51,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(240, 240, 240);
+  background-color: rgb(248, 248, 248);
   width: 100vw;
   height: 100vh;
 }
@@ -73,11 +73,28 @@
 }
 
 .router-link {
-  margin: 0 30px 0 15px;
-  background-color: gray;
+  margin: 0 0px 0 15px;
+  background-color: rgb(250, 250, 250);
   display: inline-block;
   padding: 1.4em;
   width: 8em;
+  transition: background-color 200ms;
+  text-decoration: none;
+  color: #2c3e50;
 }
+
+.router-link-active {
+  background-color: rgb(241, 241, 241);
+}
+
+.router-link:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.router-link:active {
+  transition: background-color 100ms;
+  background-color: rgb(235, 235, 235);
+}
+
 
 </style>
