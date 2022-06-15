@@ -125,11 +125,15 @@
     border-style: solid;
     box-sizing: border-box;
     outline: none;
-    transition: border 200ms;
+    transition-property: border, box-shadow;
+    transition-duration: 200ms;
+    border: 1px solid #d7d7d7;
+    box-shadow: 0px 0px 3px #008bba00;
   }
 
   .load-user-input:focus {
-    border: 2px solid #008bba8a;
+    border: 1px solid #008bba8a;
+    box-shadow: 0px 0px 4px #008bba8a;
   }
   
   .load-user-input::placeholder {
@@ -142,6 +146,12 @@
     border-radius: 0 5px 5px 0;
     background-color: #008cba;
     color: white;
+    cursor: pointer;
+    transition: background-color, 200ms;
+  }
+
+  .load-user-button:hover {
+    background-color: #006687
   }
 
   .form-wrapper {
