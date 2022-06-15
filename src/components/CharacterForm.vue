@@ -45,7 +45,7 @@
 <script setup>  
   import { messages } from '@/state/messages';
   import { participants } from '@/state/participants';
-  import { ref, computed } from 'vue';
+  import { ref, computed, watch } from 'vue';
   
   const urlInput = ref('');
   const shouldComment = ref(false);
@@ -54,6 +54,10 @@
   const commentCount = ref(1);
   const buttonText = computed(() => {
     return participants.loaded ? "Ready" : "Load";
+  });
+
+  watch(urlInput, () => {
+    messages.clearError();
   });
 
   const loadCharacter = async () => {
@@ -111,8 +115,14 @@
     padding: 10px;
     font-size: 17px;
     border-radius: 5px 0 0 5px;
-    border: 1px solid rgb(157, 236, 236);
+    border-width: 1px 0px 1px 1px;
+    border-color: black;
+    border-style: solid;
     box-sizing: border-box;
+  }
+
+  .load-user-input:focus {
+    border: 0;
   }
   
   .load-user-input::placeholder {
@@ -123,7 +133,7 @@
     width: 5em;
     border: 0;
     border-radius: 0 5px 5px 0;
-    border: 1px solid cyan;
+    border: 1px solid rgb(0, 0, 0);
   }
 
   .form-wrapper {
