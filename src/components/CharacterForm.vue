@@ -10,36 +10,39 @@
       Delete current participants list?
     </button>
     <template v-if="!participants.loaded">
-      <ul>
-        <li>
-          <label for="shouldComment">User should comment?</label>
-          <input type="checkbox" id="shouldComment" v-model="shouldComment" />
-        </li>
-        <template v-if="shouldComment">
-            <li>
-              <label for="commentCount">For how many extra tickets?</label>
-              <br />
-              <input type="number" min="0" v-model="commentCount" />
-            </li>
-        </template>
-        <li>
-          <label for="shouldSubscribe">User should subscribe?</label>
-          <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
-        </li>
-        <template v-if="shouldSub">
-            <li>
-              <label for="subCount">For how many extra tickets?</label>
-              <br />
-              <input type="number" min="0" v-model="subCount" />
-            </li>
-        </template>
-      </ul>
+      <div class="options-wrapper">
+        <div class="shouldComment">
+          <div>
+            <label for="shouldComment">User should comment?</label>
+            <input type="checkbox" id="shouldComment" v-model="shouldComment" />
+          </div>
+          <template v-if="shouldComment">
+              <div class="shouldCommentInput">
+                <label for="commentCount">For how many extra tickets?</label>
+                <br />
+                <input type="number" min="0" v-model="commentCount" />
+              </div>
+          </template>
+        </div>
+        <div class="shouldSub">
+          <div>
+            <label for="shouldSubscribe">User should subscribe?</label>
+            <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
+          </div>
+          <template v-if="shouldSub">
+              <div class="shouldSubInput">
+                <label for="subCount">For how many extra tickets?</label>
+                <br />
+                <input type="number" min="0" v-model="subCount" />
+              </div>
+          </template>
+        </div>
+      </div>
     </template>
 
     <p v-if="messages.error">{{messages.error}}</p>
     <p v-if="messages.loading">{{messages.loading}}</p>
     <p v-if="participants.removed.length > 0">{{participants.removed}}</p>
-    <p v-if="participants.changed.length">{{participants.changed}}</p>
     </div>
   </template>
 
@@ -49,8 +52,8 @@
   import { ref, computed, watch } from 'vue';
   
   const urlInput = ref('');
-  const shouldComment = ref(false);
-  const shouldSub = ref(false);
+  const shouldComment = ref(true);
+  const shouldSub = ref(true);
   const subCount = ref(1);
   const commentCount = ref(1);
   const buttonText = computed(() => {
@@ -148,4 +151,37 @@
     justify-content: center;
     align-items: center;
   }
+
+  .options-wrapper {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .shouldComment {
+    margin-top: 30px;
+    width: 200px;
+  }
+
+  .shouldCommentInput {
+    position: absolute;
+  }
+
+  input#shouldComment {
+    margin-left: 10px;
+  }
+
+  input#shouldSubscribe {
+    margin-left: 10px;
+  }
+
+  .shouldSub {
+    margin-top: 30px;
+    width: 200px;
+  }
+
+  .shouldSubInput {
+    position: absolute;
+  }
+
 </style>
