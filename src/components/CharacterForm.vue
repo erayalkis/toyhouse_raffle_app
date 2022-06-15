@@ -40,9 +40,10 @@
       </div>
     </template>
 
-    <p v-if="messages.error">{{messages.error}}</p>
-    <p v-if="messages.loading">{{messages.loading}}</p>
-    <p v-if="participants.removed.length > 0">{{participants.removed}}</p>
+    <div v-if="messages.error || messages.loading" class="messages">
+      <h3 class="errorMsg">{{messages.error}}</h3>
+      <h3 class="loadingMsg">{{messages.loading}}</h3>
+    </div>
     </div>
   </template>
 
@@ -120,13 +121,15 @@
     font-size: 17px;
     border-radius: 5px 0 0 5px;
     border-width: 1px 0px 1px 1px;
-    border-color: black;
+    border-color: #e3e3e3;
     border-style: solid;
     box-sizing: border-box;
+    outline: none;
+    transition: border 200ms;
   }
 
   .load-user-input:focus {
-    border: 0;
+    border: 2px solid #008bba8a;
   }
   
   .load-user-input::placeholder {
@@ -137,15 +140,17 @@
     width: 5em;
     border: 0;
     border-radius: 0 5px 5px 0;
-    border: 1px solid rgb(0, 0, 0);
+    background-color: #008cba;
+    color: white;
   }
 
   .form-wrapper {
-    border: 1px solid grey;
+    border: 1px solid #e3e3e3;
     height: 20em;
     width: 50em;
-    background-color: white;
+    background-color: rgba(247,247,247,255);
     border-radius: 10px;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -184,6 +189,14 @@
 
   .shouldSubInput {
     position: absolute;
+  }
+
+  .messages {
+    padding-top: 50px;
+  }
+
+  .errorMsg {
+    color: rgb(255, 46, 46);
   }
 
 </style>
