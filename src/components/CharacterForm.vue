@@ -1,12 +1,13 @@
 <template>
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
-  <div class="app">
   <div class="form-wrapper">
-    <form id="load-user-form" @submit.prevent="loadCharacter">
-      <input class="load-user-input" :disabled="participants.loaded" 
-        placeholder="Enter raffle character URL..." v-model="urlInput" />
-      <button class="load-user-button" type="submit" :disabled="participants.loaded">{{buttonText}}</button>
-    </form>
+    <div>
+      <form id="load-user-form" @submit.prevent="loadCharacter">
+        <input class="load-user-input" :disabled="participants.loaded" 
+          placeholder="Enter raffle character URL..." v-model="urlInput" />
+        <button class="load-user-button" type="submit" :disabled="participants.loaded">{{buttonText}}</button>
+      </form>
+      </div>
     <button v-if="participants.loaded" @click="participants.deleteParticipants">
       Delete current participants list?
     </button>
@@ -41,8 +42,7 @@
     <p v-if="messages.loading">{{messages.loading}}</p>
     <p v-if="participants.removed.length > 0">{{participants.removed}}</p>
     </div>
-  </div>
-</template>
+  </template>
 
 <script setup>  
   import { messages } from '@/state/messages';
@@ -108,7 +108,7 @@
 
 <style scoped>
   .load-user-input {
-    width: 70%;
+    width: 80%;
     height: 3em;
     font-size: 17px;
     border-radius: 5px;
@@ -124,9 +124,13 @@
 
   .form-wrapper {
     border: 1px solid grey;
-    padding: 5em 10em 5em 10em;
+    height: 20em;
+    width: 30em;
     background-color: white;
     border-radius: 10px;
-    max-height: 10em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 </style>
