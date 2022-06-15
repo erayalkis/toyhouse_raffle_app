@@ -24,7 +24,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: rgb(185, 185, 185);
+  justify-content: center;
+  background-color: rgb(240, 240, 240);
   width: 100vw;
   height: 100vh;
 }
