@@ -53,7 +53,7 @@
   const subCount = ref(1);
   const commentCount = ref(1);
   const buttonText = computed(() => {
-    return participants.loaded ? "Participants loaded" : "Load users";
+    return participants.loaded ? "Ready" : "Load";
   });
 
   const loadCharacter = async () => {
@@ -106,7 +106,7 @@
 
 <style scoped>
   .load-user-input {
-    width: 30em;
+    width: 40em;
     height: 3.5em;
     padding: 10px;
     font-size: 17px;
@@ -120,6 +120,7 @@
   }
   .load-user-button {
     height: 4.5em;
+    width: 5em;
     border: 0;
     border-radius: 0 5px 5px 0;
     border: 1px solid cyan;
