@@ -8,13 +8,34 @@
         <router-link class="router-link" to="/participants">Participants</router-link>
       </div>
       <div class="app-status">
-        <h3>Offline</h3>
+        <h3
+        >
+          {{isFetching ? "Fetching..." : isOnline ? "Online" : "Offline"}}
+        </h3>
       </div>
     </nav>
     <!-- route outlet -->
     <!-- component matched by the route will render here -->
     <router-view></router-view>
 </template>
+
+
+<script setup>
+  import { onMounted, ref } from 'vue';
+
+  const isOnline = ref(false);
+  const isFetching = ref(true);
+  onMounted(async () => {
+    console.log("hi")
+    fetch("https://toyhouse-rails-api.herokuapp.com/app_status").then(async res => {
+      console.log(await res.json());
+      if(res.ok) {
+        isOnline.value = true;
+      }
+      isFetching.value = false;
+    })
+  });
+</script>
 
 <style>
 * {
