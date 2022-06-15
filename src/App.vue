@@ -4,8 +4,14 @@
       <!-- specify the link by passing the `to` prop. -->
       <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
       <div class="nav-links">
-        <router-link class="router-link" to="/">Home</router-link>
-        <router-link class="router-link" to="/participants">Participants</router-link>
+        <router-link class="router-link" to="/">
+          <img class="homeIcon" :src="homeUrl" />
+          Home
+        </router-link>
+        <router-link class="router-link" to="/participants">
+          <img class="peopleIcon" :src="peopleUrl" />
+          Participants
+        </router-link>
       </div>
       <div class="app-status">
         <h3
@@ -22,6 +28,8 @@
 
 
 <script setup>
+  import homeUrl from '@/assets/home-svgrepo-com.svg?url';
+  import peopleUrl from '@/assets/people-svgrepo-com.svg?url';
   import { onMounted, ref } from 'vue';
 
   const isOnline = ref(false);
@@ -69,42 +77,69 @@
   align-items: center;
   top: 0;
   width: 100vw;
-  height: 4em;
+  height: 2.5em;
   border-bottom: 1px solid black;
   box-sizing: border-box;
+  background-color: #212529;
 }
 
 .router-link {
   margin: 0 0px 0 15px;
-  background-color: rgb(250, 250, 250);
+  position: relative;
+  background-color: #212529;
   display: inline-block;
-  padding: 1.4em;
   width: 8em;
-  transition: background-color 200ms;
+  transition: color, background-color 200ms;
   text-decoration: none;
-  color: #2c3e50;
+  color: #909294;
 }
 
 .online {
-  color: green;
+  color: #008cba;
 }
 
 .offline {
   color: red;
 }
 
-.router-link-active {
-  background-color: rgb(241, 241, 241);
-}
-
 .router-link:hover {
-  background-color: rgb(241, 241, 241);
+  color: #c7c8c9;
 }
 
 .router-link:active {
-  transition: background-color 100ms;
-  background-color: rgb(235, 235, 235);
+  transition: color 100ms;
+  color: white;
 }
 
+
+
+
+.router-link:hover .homeIcon {
+  filter: invert(100%) saturate(100%) hue-rotate(160deg) brightness(200%) contrast(98%);
+}
+
+.router-link:active .homeIcon {
+  filter: invert(100%) saturate(300%) hue-rotate(160deg) brightness(500%) contrast(98%);
+}
+
+.router-link:hover .peopleIcon {
+  filter: invert(100%) saturate(100%) hue-rotate(160deg) brightness(200%) contrast(98%);
+}
+
+.router-link:active .peopleIcon {
+  filter: invert(100%) saturate(300%) hue-rotate(160deg) brightness(500%) contrast(98%);
+}
+
+.homeIcon {
+  position: absolute;
+  left: 0;
+  margin-left: 15px;
+}
+
+.peopleIcon {
+  position: absolute;
+  left: 0;
+  margin-left: -7px;
+}
 
 </style>
