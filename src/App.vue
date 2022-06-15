@@ -60,7 +60,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgb(248, 248, 248);
+  background-color: white;
   width: 100vw;
   height: 100vh;
 }
@@ -99,7 +99,7 @@
 }
 
 .offline {
-  color: red;
+  color: #d9534f;
 }
 
 .router-link:hover {
