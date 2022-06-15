@@ -13,12 +13,12 @@
       <div class="options-wrapper">
         <div class="shouldComment">
           <div>
-            <label for="shouldComment">User should comment?</label>
+            <label for="shouldComment">Attendees can comment for extra tickets?</label>
             <input type="checkbox" id="shouldComment" v-model="shouldComment" />
           </div>
           <template v-if="shouldComment">
               <div class="shouldCommentInput">
-                <label for="commentCount">For how many extra tickets?</label>
+                <label for="commentCount">How many extra tickets?</label>
                 <br />
                 <input type="number" min="0" v-model="commentCount" />
               </div>
@@ -26,12 +26,12 @@
         </div>
         <div class="shouldSub">
           <div>
-            <label for="shouldSubscribe">User should subscribe?</label>
+            <label for="shouldSubscribe">Attendees can subscribe for extra tickets?</label>
             <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
           </div>
           <template v-if="shouldSub">
               <div class="shouldSubInput">
-                <label for="subCount">For how many extra tickets?</label>
+                <label for="subCount">How many extra tickets?</label>
                 <br />
                 <input type="number" min="0" v-model="subCount" />
               </div>
@@ -52,8 +52,8 @@
   import { ref, computed, watch } from 'vue';
   
   const urlInput = ref('');
-  const shouldComment = ref(true);
-  const shouldSub = ref(true);
+  const shouldComment = ref(false);
+  const shouldSub = ref(false);
   const subCount = ref(1);
   const commentCount = ref(1);
   const buttonText = computed(() => {
@@ -161,6 +161,7 @@
   .shouldComment {
     margin-top: 30px;
     width: 200px;
+    user-select: none;
   }
 
   .shouldCommentInput {
@@ -178,6 +179,7 @@
   .shouldSub {
     margin-top: 30px;
     width: 200px;
+    user-select: none;
   }
 
   .shouldSubInput {
