@@ -17,10 +17,13 @@
 
   import { participants } from '@/state/participants';
   import { defineProps } from 'vue';
-  defineProps(['username', 'details']);
-
+  const props = defineProps(['username', 'details']);
   const addTicket = (key) => {
+    let data = {}
+    data[props.username] = props.details;
+    participants.changed.push(data);
     participants.increment(key);
+
   }
 
   const removeTicket = (key) => {
