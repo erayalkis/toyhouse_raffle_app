@@ -6,7 +6,7 @@
     </div>
   </template>
   <template v-else>
-    <input type="text" placeholder="Search user by name..." @input="createDebounce" />
+    <input class="participants-input" type="text" placeholder="Search user by name..." @input="createDebounce" />
     <div class="participants-wrapper">
       <div class="participants-list">
         <template v-for="user in filteredUsers" :key="user[0]">
@@ -61,6 +61,11 @@
     width: 100%;
     height: 100%;
     justify-content: center;
+    overflow: scroll;
+  }
+
+  .participants-input {
+    margin-top: 100px;
   }
   .participants-list {
     display: flex;
