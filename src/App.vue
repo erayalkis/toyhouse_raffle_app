@@ -68,6 +68,7 @@
 .app-status {
   margin-right: 15px;
   color: gray;
+  user-select: none;
 }
 
 .navbar {
@@ -92,6 +93,7 @@
   transition: color, background-color 200ms;
   text-decoration: none;
   color: #909294;
+  user-select: none;
 }
 
 .online {
@@ -110,9 +112,6 @@
   transition: color 100ms;
   color: white;
 }
-
-
-
 
 .router-link:hover .homeIcon {
   filter: invert(100%) saturate(100%) hue-rotate(160deg) brightness(200%) contrast(98%);
@@ -134,12 +133,14 @@
   position: absolute;
   left: 0;
   margin-left: 15px;
+  user-select: none;
 }
 
 .peopleIcon {
   position: absolute;
   left: 0;
   margin-left: -7px;
+  user-select: none;
 }
 
 </style>
