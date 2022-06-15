@@ -9,6 +9,7 @@
       </div>
       <div class="app-status">
         <h3
+          :class="{ online: isOnline, offline: !isFetching && !isOnline }"
         >
           {{isFetching ? "Fetching..." : isOnline ? "Online" : "Offline"}}
         </h3>
@@ -58,6 +59,7 @@
 
 .app-status {
   margin-right: 15px;
+  color: gray;
 }
 
 .navbar {
@@ -81,6 +83,14 @@
   transition: background-color 200ms;
   text-decoration: none;
   color: #2c3e50;
+}
+
+.online {
+  color: green;
+}
+
+.offline {
+  color: red;
 }
 
 .router-link-active {
