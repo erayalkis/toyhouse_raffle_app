@@ -1,6 +1,7 @@
 <template>
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <div class="app">
+  <div class="form-wrapper">
     <form id="load-user-form" @submit.prevent="loadCharacter">
       <input class="load-user-input" :disabled="participants.loaded" 
         placeholder="Enter raffle character URL..." v-model="urlInput" />
@@ -39,6 +40,7 @@
     <p v-if="messages.error">{{messages.error}}</p>
     <p v-if="messages.loading">{{messages.loading}}</p>
     <p v-if="participants.removed.length > 0">{{participants.removed}}</p>
+    </div>
   </div>
 </template>
 
@@ -105,4 +107,24 @@
 </script>
 
 <style scoped>
+  .load-user-input {
+    width: 70%;
+    height: 3em;
+    font-size: 17px;
+    border-radius: 5px;
+    border: 1px solid rgb(157, 236, 236);
+
+  }
+  .load-user-button {
+    height: 40px;
+    border: 0;
+    border-radius: 5px;
+    border: 1px solid cyan;
+  }
+
+  .form-wrapper {
+    border: 1px solid grey;
+    padding: 5em 10em 5em 10em;
+    max-height: 10em;
+  }
 </style>
