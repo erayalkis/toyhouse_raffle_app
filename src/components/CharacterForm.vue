@@ -125,6 +125,8 @@
   .form-wrapper {
     border: 1px solid grey;
     padding: 5em 10em 5em 10em;
+    background-color: white;
+    border-radius: 10px;
     max-height: 10em;
   }
 </style>
