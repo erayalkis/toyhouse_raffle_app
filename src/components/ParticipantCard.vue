@@ -26,7 +26,10 @@
 
   }
 
-  const removeTicket = (key) => {
+  const removeTicket = (key) => {    
+    let data = {}
+    data[props.username] = props.details;
+    participants.changed.push(data);
     participants.decrement(key);
   }
 
