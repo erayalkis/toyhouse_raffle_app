@@ -12,6 +12,8 @@ export const participants = reactive({
     this.list = {};
     this.loaded = false;
     this.removed = [];
+    // Holds original values, list holds changed values
+    // I know its confusing
     this.changed = [];
   },
   remove(key) {
