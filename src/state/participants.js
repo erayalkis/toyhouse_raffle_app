@@ -14,7 +14,7 @@ export const participants = reactive({
     this.removed = [];
     // Holds original values, list holds changed values
     // I know its confusing
-    this.changed = [];
+    this.changed = {};
   },
   remove(key) {
     this.removed.push({ username: key, details: this.list[key] })
