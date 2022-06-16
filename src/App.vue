@@ -163,4 +163,12 @@ footer {
   width: 100%;
 }
 
+footer a {
+  color:#008cba;
+}
+
+footer a:hover {
+  color: #006687
+}
+
 </style>
