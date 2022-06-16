@@ -58,7 +58,6 @@
         Afterwards, you can pick any number of winners you want with just the click of a button! :)
         You may also increase or decrease ticket counts, and delete users from the participants list.
       </h3>
-      <small><em>This app is not associated with or a part of Toyhou.se. It's only a fan project.</em></small>
     </div>
   </template>
 
@@ -263,11 +262,5 @@
 
   abbr {
     cursor: help;
-  }
-
-  small {
-    display: block;
-    padding-top: 40px;
-    opacity: 50%;
   }
 </style>
