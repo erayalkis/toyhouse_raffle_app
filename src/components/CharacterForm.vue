@@ -5,12 +5,12 @@
       <h3>Raffle</h3>
       <hr />
     </div>
-      <form id="load-user-form" @submit.prevent="loadCharacter">
+      <form id="load-user-form" @submit.prevent="loadCharacter" v-if="!participants.loaded">
         <input class="load-user-input" :disabled="participants.loaded" 
           placeholder="Enter raffle character URL..." v-model="urlInput" />
         <button class="load-user-button" type="submit" :disabled="participants.loaded">{{buttonText}}</button>
       </form>
-    <button v-if="participants.loaded" @click="participants.deleteParticipants">
+    <button class="delete-participants" v-if="participants.loaded" @click="participants.deleteParticipants">
       Delete current participants list?
     </button>
     <template v-if="!participants.loaded">
@@ -271,5 +271,21 @@
 
   abbr {
     cursor: help;
+  }
+
+  .delete-participants {
+    height: 4.5em;
+    width: 50em;
+    border: 0;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #008cba;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color, 200ms;
+  }
+
+  .delete-participants:hover {
+    background-color: #006687;
   }
 </style>
