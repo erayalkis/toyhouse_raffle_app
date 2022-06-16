@@ -1,6 +1,10 @@
 <template>
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <div class="form-wrapper">
+    <div class="title">
+      <h3>Raffle</h3>
+      <hr />
+    </div>
       <form id="load-user-form" @submit.prevent="loadCharacter">
         <input class="load-user-input" :disabled="participants.loaded" 
           placeholder="Enter raffle character URL..." v-model="urlInput" />
@@ -13,29 +17,25 @@
       <div class="options-wrapper">
         <div class="shouldComment">
           <div>
-            <label for="shouldComment">Attendees can comment for extra tickets?</label>
+            <label for="shouldComment">Comments give extra tickets?</label>
             <input type="checkbox" id="shouldComment" v-model="shouldComment" />
           </div>
-          <template v-if="shouldComment">
               <div class="shouldCommentInput">
                 <label for="commentCount">How many extra tickets?</label>
                 <br />
-                <input type="number" min="0" v-model="commentCount" />
+                <input :disabled="!shouldComment" type="number" min="0" v-model="commentCount" />
               </div>
-          </template>
         </div>
         <div class="shouldSub">
           <div>
-            <label for="shouldSubscribe">Attendees can subscribe for extra tickets?</label>
+            <label for="shouldSubscribe">Subscriptions give extra tickets?</label>
             <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
           </div>
-          <template v-if="shouldSub">
               <div class="shouldSubInput">
                 <label for="subCount">How many extra tickets?</label>
                 <br />
-                <input type="number" min="0" v-model="subCount" />
+                <input :disabled="!shouldSub" type="number" min="0" v-model="subCount" />
               </div>
-          </template>
         </div>
       </div>
     </template>
@@ -175,30 +175,47 @@
 
   .shouldComment {
     margin-top: 30px;
-    width: 200px;
+    width: 500px;
     user-select: none;
   }
 
-  .shouldCommentInput {
-    position: absolute;
-  }
 
   input#shouldComment {
     margin-left: 10px;
+    margin-bottom: 25px;
+  }
+
+  input#shouldComment:checked {
+    background-color: #008cba;
   }
 
   input#shouldSubscribe {
     margin-left: 10px;
+    margin-bottom: 25px;
   }
 
   .shouldSub {
-    margin-top: 30px;
-    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
     user-select: none;
   }
 
-  .shouldSubInput {
-    position: absolute;
+  .title {
+    width: 100%;
+    text-align: left;
+    margin-left: 50px;
+    margin-bottom: 20px;
+  }
+
+  .title hr {
+    margin-top: 10px;
+    border: 0;
+    height: 1px;
+    color: #e2e2e2;
+    background-color: #e2e2e2;
+    width: 95%;
   }
 
   .messages {
