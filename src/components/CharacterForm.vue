@@ -12,9 +12,9 @@
       </form>
     <div class="winners-input" v-if="participants.loaded">
       <h3>How many winners should be picked?</h3>
-      <input type="number" min="0" placeholder="Number of winners"/>
+      <input type="number" min="0" placeholder="Number of winners" v-model="winnersCount" />
     </div>
-    <button class="pick-winners" v-if="participants.loaded">
+    <button class="pick-winners" v-if="participants.loaded" @click="pickWinners">
       Pick winners!
     </button>
     <button class="delete-participants" v-if="participants.loaded" @click="participants.deleteParticipants">
@@ -78,6 +78,7 @@
   const shouldSub = ref(false);
   const subCount = ref(1);
   const commentCount = ref(1);
+  const winnersCount = ref(1);
   const buttonText = computed(() => {
     return participants.loaded ? "Ready" : "Load";
   });
@@ -131,6 +132,10 @@
     }
 
     return base;
+  }
+
+  const pickWinners = () => {
+    participants.winnersArray(winnersCount.value);
   }
 </script>
 
