@@ -197,6 +197,7 @@
   .shouldSub {
     display: flex;
     flex-direction: column;
+    margin-top: 30px;
     justify-content: center;
     width: 500px;
     user-select: none;
