@@ -21,7 +21,7 @@
             <input type="checkbox" id="shouldComment" v-model="shouldComment" />
           </div>
               <div class="shouldCommentInput">
-                <label for="commentCount">How many extra tickets?</label>
+                <label for="commentCount">Comment ticket count</label>
                 <br />
                 <input :disabled="!shouldComment" type="number" min="0" v-model="commentCount" />
               </div>
@@ -32,7 +32,7 @@
             <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
           </div>
               <div class="shouldSubInput">
-                <label for="subCount">How many extra tickets?</label>
+                <label for="subCount">Subscription ticket count</label>
                 <br />
                 <input :disabled="!shouldSub" type="number" min="0" v-model="subCount" />
               </div>
