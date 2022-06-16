@@ -240,4 +240,12 @@
   .text-sm {
     color: #2c3e50;
   }
+
+  div.shouldCommentInput > label {
+    cursor: help;
+  }
+
+  div.shouldSubInput > label {
+    cursor: help;
+  }
 </style>
