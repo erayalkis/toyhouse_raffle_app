@@ -45,6 +45,12 @@
       <h3 class="loadingMsg">{{messages.loading}}</h3>
     </div>
     </div>
+
+    <div class="text">
+      <h1>Hi there!</h1>
+      <hr />
+      <h3 class="text-sm">This is a free tool for Toyhou.se for picking raffle winners efficiently!</h3>
+    </div>
   </template>
 
 <script setup>  
@@ -227,4 +233,11 @@
     color: rgb(255, 46, 46);
   }
 
+  .text {
+    margin-top: 50px;
+  }
+
+  .text-sm {
+    color: #2c3e50;
+  }
 </style>
