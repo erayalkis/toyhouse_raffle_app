@@ -24,6 +24,13 @@
     <!-- route outlet -->
     <!-- component matched by the route will render here -->
     <router-view></router-view>
+
+    <footer>
+      <small><em>
+        This app is not associated with or a part of Toyhou.se. It's only a fan project. Check the repository out
+          <a class="footer-link" href="https:/github.com/erayalkis/toyhouse_raffle_App" target="#">here</a>
+      </em></small>
+    </footer>
 </template>
 
 
@@ -141,6 +148,19 @@
   left: 0;
   margin-left: -7px;
   user-select: none;
+}
+
+small {
+  display: block;
+  opacity: 50%;
+}
+
+footer {
+  background-color: #cfcfcf;
+  position: fixed;
+  bottom: 0;
+  height: 20px;
+  width: 100%;
 }
 
 </style>
