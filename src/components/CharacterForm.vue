@@ -10,6 +10,13 @@
           placeholder="Enter raffle character URL..." v-model="urlInput" />
         <button class="load-user-button" type="submit" :disabled="participants.loaded">{{buttonText}}</button>
       </form>
+    <div class="winners-input" v-if="participants.loaded">
+      <h3>How many winners should be picked?</h3>
+      <input type="number" min="0" placeholder="Number of winners"/>
+    </div>
+    <button class="pick-winners" v-if="participants.loaded">
+      Pick winners!
+    </button>
     <button class="delete-participants" v-if="participants.loaded" @click="participants.deleteParticipants">
       Delete current participants list?
     </button>
@@ -274,6 +281,24 @@
   }
 
   .delete-participants {
+    height: 2em;
+    width: 100%;
+    border: 0;
+    border-radius: 0 0 5px 5px;
+    background-color: #d9534f;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color, 200ms;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .delete-participants:hover {
+    background-color: #c9302c;
+  }
+
+  .pick-winners {
     height: 4.5em;
     width: 50em;
     border: 0;
@@ -282,10 +307,25 @@
     color: white;
     font-size: 14px;
     cursor: pointer;
-    transition: background-color, 200ms;
+    transition: background-color, 200ms;  
   }
 
-  .delete-participants:hover {
+  .pick-winners:hover {
     background-color: #006687;
   }
+
+  .winners-input {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 50px;
+  }
+
+  .winners-input input {
+    height: 23px;
+    box-sizing: border-box;
+  }
+
+
 </style>
