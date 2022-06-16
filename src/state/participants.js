@@ -18,6 +18,7 @@ export const participants = reactive({
     this.loaded = false;
     this.removed = [];
     this.changed = {};
+    this.winners = [];
   },
   remove(key) {
     this.removed.push({ username: key, details: this.list[key] })
@@ -49,7 +50,6 @@ export const participants = reactive({
     while(n > 0) {  
       if(winners.length === Object.keys(this.list).length) break;
   
-      console.log("hit");
       let idx = this.getRandomIndex(participantsByTicketCount.length);
       let selectedUser = participantsByTicketCount[idx];
       let userAlreadySeen = seenUsers.filter(user => {
@@ -59,7 +59,6 @@ export const participants = reactive({
         return arrayUserUsername === selectedUserUsername;
       }).length > 0;
       
-      console.log(userAlreadySeen);
       if(userAlreadySeen || seenIndicies.includes(idx)) {
         continue;
       }
@@ -70,7 +69,7 @@ export const participants = reactive({
       n--;
     }
   
-    console.log(winners);
+    this.winners = winners;
   },
   getRandomIndex(length) {
     return Math.floor(Math.random() * length);
