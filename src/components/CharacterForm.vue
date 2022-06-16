@@ -153,6 +153,10 @@
   .load-user-input::placeholder {
     padding-left: 5px;
   }
+
+  .load-user-input:disabled {
+    background-color: #e4e4e4;
+  }
   .load-user-button {
     height: 4.5em;
     width: 5em;
@@ -165,7 +169,12 @@
   }
 
   .load-user-button:hover {
-    background-color: #006687
+    background-color: #006687;
+  }
+
+  .load-user-button:disabled {
+    background-color: #006687;
+    cursor: not-allowed;
   }
 
   .form-wrapper {
