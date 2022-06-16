@@ -32,7 +32,7 @@
             <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
           </div>
               <div class="shouldSubInput">
-                <label for="subCount"><abbr title="Amount of tickets users can earn by subscribing to raffle host.">Subscription ticket count</abbr></label>
+                <label for="subCount"><abbr title="Amount of tickets users can earn by subscribing to raffle host. (Requires host's subscribers to be public)">Subscription ticket count</abbr></label>
                 <br />
                 <input :disabled="!shouldSub" type="number" min="0" v-model="subCount" />
               </div>
@@ -49,7 +49,16 @@
     <div class="text">
       <h1>Hi there!</h1>
       <hr />
-      <h3 class="text-sm">This is a free tool for Toyhou.se for picking raffle winners efficiently!</h3>
+      <h3 class="text-sm">
+        This is a free tool for Toyhou.se that let's you pick raffle winners efficiently!
+        <br />
+        To use the app, simply enter the raffle characters link, select any optional rules you want, and load
+        the participants!
+        <br />
+        Afterwards, you can pick any number of winners you want with just the click of a button! :)
+        You may also increase or decrease ticket counts, and delete users from the participants list.
+      </h3>
+      <small><em>This app is not associated with or a part of Toyhou.se. It's only a fan project.</em></small>
     </div>
   </template>
 
@@ -216,7 +225,7 @@
     margin-bottom: 20px;
   }
 
-  .title hr {
+  hr {
     margin-top: 10px;
     border: 0;
     height: 1px;
@@ -235,10 +244,13 @@
 
   .text {
     margin-top: 50px;
+    width: 60%;
   }
 
   .text-sm {
-    color: #2c3e50;
+    margin-top: 20px;
+    line-height: 1.6rem;
+    color: #404244;
   }
 
   div.shouldCommentInput > label {
@@ -247,5 +259,15 @@
 
   div.shouldSubInput > label {
     cursor: help;
+  }
+
+  abbr {
+    cursor: help;
+  }
+
+  small {
+    display: block;
+    padding-top: 40px;
+    opacity: 50%;
   }
 </style>
