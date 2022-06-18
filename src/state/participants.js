@@ -6,6 +6,7 @@ export const participants = reactive({
   // I know its confusing
   changed: {},
   removed: [],
+  winners: [],
   loaded: false,
   setParticipants(obj) {
     this.list = obj;
