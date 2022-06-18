@@ -215,8 +215,8 @@
     width: 50em;
     background-color: rgba(247,247,247,255);
     border-radius: 10px;
-    position: relative;
     display: flex;
+    margin-top: 50px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
