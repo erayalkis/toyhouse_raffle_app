@@ -11,9 +11,12 @@ export const participants = reactive({
   setParticipants(obj) {
     this.list = obj;
   },
-  deleteParticipants() {
-    const confirmation = confirm("Are you sure you want to delete all loaded participants?");
-    if(!confirmation) return;
+  deleteParticipants(confirmUser=true) {
+    if(confirmUser) {
+      const confirmation = confirm("Are you sure you want to delete all loaded participants?");
+      if(!confirmation) return;
+    }
+
 
     this.list = {};
     this.loaded = false;
