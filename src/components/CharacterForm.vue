@@ -2,7 +2,7 @@
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <div class="form-wrapper">
     <div class="title">
-      <h3>Raffle</h3>
+      <h3>{{participants.winners.length > 0 ? `Winners | ${new Date().toLocaleDateString()}` : "Raffle"}}</h3>
       <hr />
     </div>
     <template v-if="!participants.winners.length">
@@ -52,10 +52,10 @@
       
     </template>
     <template v-else>
-      <div>
-        <template  :key="user" v-for="user in participants.winners">
-          <div>
-            <img :src="user[Object.keys(user)[0]].image" />
+      <div class="winners">
+        <template :key="user" v-for="user in participants.winners">
+          <div class="winner">
+            <img class="winner-img" :src="user[Object.keys(user)[0]].image" />
             {{Object.keys(user)[0]}}
             {{user.ticket_count}}
           </div>
@@ -264,6 +264,7 @@
     text-align: left;
     margin-left: 50px;
     margin-bottom: 20px;
+    margin-top: 10px;
   }
 
   hr {
@@ -353,5 +354,28 @@
     box-sizing: border-box;
   }
 
+  .winners {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    width: 100%;
+    height: 90%;
+    margin-bottom: 30px;
+  }
+
+  .winner {
+    width: 30%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 5px 20px 5px;
+  }
+
+  .winner-img {
+    height: 5rem;
+    width: 5rem;
+  }
 
 </style>
