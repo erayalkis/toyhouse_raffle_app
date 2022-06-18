@@ -31,6 +31,8 @@ export const participants = reactive({
   },
   decrement(key) {
     let user = this.list[key]
+    if(user.ticket_count == 0) return;
+    
     user.ticket_count -= 1;
   },
   winnersArray(n) {
