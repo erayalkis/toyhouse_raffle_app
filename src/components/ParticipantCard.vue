@@ -39,7 +39,6 @@
 
   .participants-wrapper {
     display: flex;
-    width: 100%;
     height: 100%;
     justify-content: center;
   }
@@ -54,6 +53,7 @@
     margin: 30px;
     text-align: center;
     border: 1px solid lightblue;
+    height: 17rem;
   }
 
   .participant-image {
