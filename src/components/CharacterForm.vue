@@ -5,6 +5,8 @@
       <h3>Raffle</h3>
       <hr />
     </div>
+    <template v-if="!participants.winners.length">
+
       <form id="load-user-form" @submit.prevent="loadCharacter" v-if="!participants.loaded">
         <input class="load-user-input" :disabled="participants.loaded" 
           placeholder="Enter raffle character URL..." v-model="urlInput" />
@@ -44,6 +46,21 @@
                 <input :disabled="!shouldSub" type="number" min="0" v-model="subCount" />
               </div>
         </div>
+        
+      </div>
+    </template>
+      
+    </template>
+    <template v-else>
+      <div>
+        <template  :key="user" v-for="user in participants.winners">
+          <div>
+            <img :src="user[Object.keys(user)[0]].image" />
+            {{Object.keys(user)[0]}}
+            {{user.ticket_count}}
+          </div>
+        </template>
+        <button @click="participants.deleteParticipants()" class="delete-participants">Restart</button>
       </div>
     </template>
 
@@ -51,7 +68,9 @@
       <h3 class="errorMsg">{{messages.error}}</h3>
       <h3 class="loadingMsg">{{messages.loading}}</h3>
     </div>
+
     </div>
+
 
     <div class="text">
       <h1>Hi there!</h1>
@@ -66,6 +85,7 @@
         You may also increase or decrease ticket counts, and delete users from the participants list.
       </h3>
     </div>
+    
   </template>
 
 <script setup>  
