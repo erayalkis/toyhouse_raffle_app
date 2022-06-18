@@ -65,7 +65,7 @@
       <button @click="participants.deleteParticipants" class="delete-participants">Restart</button>
     </template>
 
-    <div v-if="messages.error || messages.loading" class="messages">
+    <div class="messages">
       <h3 class="errorMsg">{{messages.error}}</h3>
       <h3 class="loadingMsg">{{messages.loading}}</h3>
     </div>
@@ -119,6 +119,8 @@
     
     const characterId = parseCharacterUrl(characterUrl);
     const users = await fetchTickets(characterId);
+    if(!users) return;
+    
     participants.setParticipants(users);
     urlInput.value = '';
   }
@@ -132,9 +134,23 @@
     messages.loading = "Fetching participant data..."
     if(shouldSub.value) messages.loading += " (this might take a while...)";
 
-    const users = await fetch(createApiUrl(id));
+    let users;
+    try {
+      users = await fetch(createApiUrl(id));
+    }
+    catch(e) {
+      console.log(e);
+      messages.setError("Invalid character link or subscribers hidden!");
+    }
     messages.loading = ""
 
+    if(!users.ok) {
+      participants.deleteParticipants(false);
+      messages.setError("Invalid character link or subscribers hidden!");
+
+      console.log(messages.error);
+      return;
+    }
     participants.loaded = true;
     return await users.json();
   }
