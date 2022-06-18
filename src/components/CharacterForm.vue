@@ -60,8 +60,8 @@
             {{user.ticket_count}}
           </div>
         </template>
-        <button @click="participants.deleteParticipants()" class="delete-participants">Restart</button>
       </div>
+      <button @click="participants.deleteParticipants" class="delete-participants">Restart</button>
     </template>
 
     <div v-if="messages.error || messages.loading" class="messages">
