@@ -1,7 +1,7 @@
 <template>
   <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <template v-if="!participants.loaded">
-    <div>
+    <div class="participants-wrapper" >
       <h1>No participants loaded!</h1>
     </div>
   </template>
@@ -58,14 +58,15 @@
 
   .participants-wrapper {
     display: flex;
+    margin-top: 20px;
     width: 100%;
-    height: 100%;
+    height: 80vh;
     justify-content: center;
-    overflow: scroll;
+    overflow-y: scroll;
   }
 
   .participants-input {
-    margin-top: 100px;
+    margin-top: 30px;
   }
   .participants-list {
     display: flex;
