@@ -68,8 +68,6 @@
   align-items: center;
   justify-content: center;
   background-color: white;
-  width: 100vw;
-  height: 100vh;
 }
 
 .app-status {
@@ -79,7 +77,7 @@
 }
 
 .navbar {
-  position: fixed;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
