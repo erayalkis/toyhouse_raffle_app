@@ -68,6 +68,10 @@
     justify-content: center;
   }
 
+  .participant-ticket-count {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
   .ticket-buttons {
     display: flex;
     flex-direction: column;
