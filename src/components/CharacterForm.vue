@@ -3,7 +3,7 @@
   <div class="form-wrapper">
     <div class="title">
       <h3>{{participants.winners.length > 0 ? `Winners | ${new Date().toLocaleDateString()}` : "Raffle"}}</h3>
-      <small><em>{{Date.now()}}</em></small>
+      <small v-if="participants.winners.length > 0"><em>{{Date.now()}}</em></small>
       <hr />
     </div>
     <template v-if="!participants.winners.length">
@@ -212,7 +212,7 @@
 
   .form-wrapper {
     border: 1px solid #e3e3e3;
-    height: 20em;
+    height: 22em;
     width: 50em;
     background-color: rgba(247,247,247,255);
     border-radius: 10px;
