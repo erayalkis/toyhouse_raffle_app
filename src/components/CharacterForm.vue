@@ -83,7 +83,7 @@
         the participants!
         <br />
         Afterwards, you can pick any number of winners you want with just the click of a button! :)
-        You may also increase or decrease ticket counts, and delete users from the participants list.
+        You may also increase or decrease ticket counts, and delete users from the participants list!
       </h3>
     </div>
     
