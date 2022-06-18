@@ -144,12 +144,12 @@
 
     if(shouldComment.value) { 
       base += 'must_comment=true&';
-      base += `comment_ticket_count=${subCount.value}&`
+      base += `comment_ticket_count=${commentCount.value}&`
     }
 
     if(shouldSub.value) {
       base += 'must_subscribe=true&';
-      base += `subscribe_ticket_count=${commentCount.value}&`;
+      base += `subscribe_ticket_count=${subCount.value}&`;
     }
 
     return base;
