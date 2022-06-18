@@ -217,6 +217,7 @@
     border-radius: 10px;
     display: flex;
     margin-top: 50px;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
