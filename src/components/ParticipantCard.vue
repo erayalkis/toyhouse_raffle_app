@@ -1,5 +1,4 @@
 <template>
-  <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <div class="participant">
     <img class="participant-image" :src="details.image" @dblclick="participants.remove(username)" />
     <p>Name: {{username}}</p>

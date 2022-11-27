@@ -43,7 +43,7 @@
   const isFetching = ref(true);
   onMounted(async () => {
     console.log("hi")
-    fetch("https://toyhouse-rails-api.herokuapp.com/app_status").then(async res => {
+    fetch("https://toyhouse-api.onrender.com/app_status").then(async res => {
       console.log(await res.json());
       if(res.ok) {
         isOnline.value = true;

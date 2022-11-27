@@ -1,5 +1,4 @@
 <template>
-  <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <template v-if="!participants.loaded">
     <div class="participants-wrapper" >
       <h1>No participants loaded!</h1>

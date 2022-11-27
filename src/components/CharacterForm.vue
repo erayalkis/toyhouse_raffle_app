@@ -1,5 +1,4 @@
 <template>
-  <!--https://toyhouse-rails-api.herokuapp.com/raffle/10868863.-yui- -->
   <div class="form-wrapper">
     <div class="title">
       <h3>{{participants.winners.length > 0 ? `Winners | ${new Date().toLocaleDateString()}` : "Raffle"}}</h3>
@@ -156,7 +155,7 @@
   }
 
   const createApiUrl = (id) => {
-    let base = `https://toyhouse-rails-api.herokuapp.com/raffle/${id}?`;
+    let base = `https://toyhouse-api.onrender.com/raffle/${id}?`;
 
     if(shouldComment.value) { 
       base += 'must_comment=true&';
