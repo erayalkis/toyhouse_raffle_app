@@ -14,10 +14,11 @@
       <hr />
     </div>
     <template v-if="!participants.winners.length">
-      <template v-if="!participants.loaded"> </template>
+      <ProfileLoad />
+      <FormOptions />
     </template>
     <template v-else>
-      <ProfileLoad />
+      <WinnersDiv />
     </template>
 
     <div class="messages">
@@ -32,12 +33,8 @@
 <script setup>
 import { messages } from "@/state/messages";
 import { participants } from "@/state/participants";
-import { ref } from "vue";
 import IntroductionText from "./IntroductionText.vue";
 import ProfileLoad from "./ProfileLoad.vue";
-
-const shouldComment = ref(false);
-const shouldSub = ref(false);
-const subCount = ref(1);
-const commentCount = ref(1);
+import WinnersDiv from "./WinnersDiv.vue";
+import FormOptions from "./FormOptions.vue";
 </script>

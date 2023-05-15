@@ -42,6 +42,7 @@
 import { participants } from "@/state/participants";
 import { messages } from "@/state/messages";
 import { computed, watch, ref } from "vue";
+import { form } from "../state/form";
 
 const buttonText = computed(() => {
   return participants.loaded ? "Ready" : "Load";
@@ -79,7 +80,7 @@ const parseCharacterUrl = (url) => {
 
 const fetchTickets = async (id) => {
   messages.loading = "Fetching participant data...";
-  if (shouldSub.value) messages.loading += " (this might take a while...)";
+  if (form.shouldSub) messages.loading += " (this might take a while...)";
 
   let users;
   try {
@@ -104,14 +105,14 @@ const fetchTickets = async (id) => {
 const createApiUrl = (id) => {
   let base = `https://toyhouse-api.onrender.com/raffle/${id}?`;
 
-  if (shouldComment.value) {
+  if (form.shouldComment) {
     base += "must_comment=true&";
-    base += `comment_ticket_count=${commentCount.value}&`;
+    base += `comment_ticket_count=${form.commentCount}&`;
   }
 
-  if (shouldSub.value) {
+  if (form.shouldSub) {
     base += "must_subscribe=true&";
-    base += `subscribe_ticket_count=${subCount.value}&`;
+    base += `subscribe_ticket_count=${form.subCount}&`;
   }
 
   return base;

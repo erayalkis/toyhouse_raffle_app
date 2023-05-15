@@ -3,7 +3,11 @@
     <div class="shouldComment">
       <div>
         <label for="shouldComment">Comments give extra tickets?</label>
-        <input type="checkbox" id="shouldComment" v-model="shouldComment" />
+        <input
+          type="checkbox"
+          id="shouldComment"
+          v-model="form.shouldComment"
+        />
       </div>
       <div class="shouldCommentInput">
         <label for="commentCount"
@@ -14,17 +18,17 @@
         >
         <br />
         <input
-          :disabled="!shouldComment"
+          :disabled="!form.shouldComment"
           type="number"
-          min="0"
-          v-model="commentCount"
+          min="1"
+          v-model="form.commentCount"
         />
       </div>
     </div>
     <div class="shouldSub">
       <div>
         <label for="shouldSubscribe">Subscriptions give extra tickets?</label>
-        <input type="checkbox" id="shouldSubscribe" v-model="shouldSub" />
+        <input type="checkbox" id="shouldSubscribe" v-model="form.shouldSub" />
       </div>
       <div class="shouldSubInput">
         <label for="subCount"
@@ -35,12 +39,16 @@
         >
         <br />
         <input
-          :disabled="!shouldSub"
+          :disabled="!form.shouldSub"
           type="number"
-          min="0"
-          v-model="subCount"
+          min="1"
+          v-model="form.subCount"
         />
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+import { form } from "../state/form";
+</script>
