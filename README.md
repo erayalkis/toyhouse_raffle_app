@@ -1,5 +1,3 @@
-# README
-
 # Project: Rafflr
 
 ![Main page for application](https://user-images.githubusercontent.com/80722863/174458236-969fa702-4e02-4e65-873d-8dde6e36a21c.png)
