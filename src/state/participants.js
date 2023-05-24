@@ -1,4 +1,4 @@
-import { reactive } from 'vue'
+import { reactive } from "vue";
 
 export const participants = reactive({
   list: {},
@@ -11,12 +11,13 @@ export const participants = reactive({
   setParticipants(obj) {
     this.list = obj;
   },
-  deleteParticipants(confirmUser=true) {
-    if(confirmUser) {
-      const confirmation = confirm("Are you sure you want to delete all loaded participants?");
-      if(!confirmation) return;
+  deleteParticipants(confirmUser = true) {
+    if (confirmUser) {
+      const confirmation = confirm(
+        "Are you sure you want to delete all loaded participants?"
+      );
+      if (!confirmation) return;
     }
-
 
     this.list = {};
     this.loaded = false;
@@ -25,60 +26,88 @@ export const participants = reactive({
     this.winners = [];
   },
   remove(key) {
-    this.removed.push({ username: key, details: this.list[key] })
+    this.removed.push({ username: key, details: this.list[key] });
     delete this.list[key];
   },
   increment(key) {
-    let user = this.list[key]
+    let user = this.list[key];
     user.ticket_count += 1;
   },
   decrement(key) {
-    let user = this.list[key]
-    if(user.ticket_count == 0) return;
-    
+    let user = this.list[key];
+    if (user.ticket_count == 0) return;
+
     user.ticket_count -= 1;
   },
   winnersArray(n) {
     const participantsByTicketCount = [];
-    for(let user in this.list) {
-      let ticket_count = this.list[user].ticket_count
-      for(ticket_count; ticket_count > 0; ticket_count--) {
-        let data = {}
+    for (let user in this.list) {
+      let ticket_count = this.list[user].ticket_count;
+      for (ticket_count; ticket_count > 0; ticket_count--) {
+        let data = {};
         data[user] = this.list[user];
-        participantsByTicketCount.push(data)
+        participantsByTicketCount.push(data);
       }
     }
-  
+
     const seenUsers = [];
     const seenIndicies = [];
     const winners = [];
     console.log(`Winner count is ${n}`);
-    while(n > 0) {  
-      if(winners.length === Object.keys(this.list).length) break;
-  
+    while (n > 0) {
+      if (winners.length === Object.keys(this.list).length) break;
+
       let idx = this.getRandomIndex(participantsByTicketCount.length);
       let selectedUser = participantsByTicketCount[idx];
-      let userAlreadySeen = seenUsers.filter(user => {
-        let arrayUserUsername = Object.keys(user)[0];
-        let selectedUserUsername = Object.keys(selectedUser)[0]
-  
-        return arrayUserUsername === selectedUserUsername;
-      }).length > 0;
-      
-      if(userAlreadySeen || seenIndicies.includes(idx)) {
+      let userAlreadySeen =
+        seenUsers.filter((user) => {
+          let arrayUserUsername = Object.keys(user)[0];
+          let selectedUserUsername = Object.keys(selectedUser)[0];
+
+          return arrayUserUsername === selectedUserUsername;
+        }).length > 0;
+
+      if (userAlreadySeen || seenIndicies.includes(idx)) {
         continue;
       }
       seenUsers.push(selectedUser);
       seenIndicies.push(idx);
       winners.push(selectedUser);
-  
+
       n--;
     }
-  
+
     this.winners = winners;
   },
   getRandomIndex(length) {
     return Math.floor(Math.random() * length);
-  }
-});
+  },
+  // Possibly the worst piece of code I've ever written, this app is in dire need of a refactoring :(
+  rerollWinner(id) {
+    const targetUserIdx = this.winners.findIndex(
+      (user) => Object.keys(user)[0] === id
+    );
 
+    const participantsCopy = { ...this.list };
+
+    console.log(participantsCopy);
+
+    this.winners.forEach(
+      (winner) => delete participantsCopy[Object.keys(winner)[0]]
+    );
+
+    const newWinnerUsername =
+      Object.keys(participantsCopy)[
+        Math.floor(Math.random() * Object.keys(participantsCopy).length)
+      ];
+
+    const newWinnerData = participantsCopy[newWinnerUsername];
+
+    const newWinner = {};
+    newWinner[newWinnerUsername] = newWinnerData;
+
+    console.log(newWinner, targetUserIdx);
+
+    this.winners[targetUserIdx] = newWinner;
+  },
+});
