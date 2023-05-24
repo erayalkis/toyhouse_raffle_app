@@ -4,7 +4,7 @@
       <h3>
         {{
           participants.winners.length > 0
-            ? `Winners | ${new Date().toLocaleDateString()}`
+            ? `Winners #${winnersListIndex} | ${new Date().toLocaleDateString()}`
             : "Raffle"
         }}
       </h3>
@@ -50,7 +50,7 @@
         Pick winners!
       </button>
       <button
-        class="delete-participants"
+        class="delete-participants delete-full"
         v-if="participants.loaded"
         @click="participants.deleteParticipants"
       >
@@ -123,11 +123,9 @@
           </div>
         </template>
       </div>
-      <button
-        @click="participants.deleteParticipants"
-        class="delete-participants"
-      >
-        Restart
+      <button @click="restartPick" class="delete-participants">Restart</button>
+      <button @click="pickWinners" class="reroll-participants">
+        Reroll all
       </button>
     </template>
 
@@ -165,6 +163,7 @@ const shouldSub = ref(false);
 const subCount = ref(1);
 const commentCount = ref(1);
 const winnersCount = ref(1);
+const winnersListIndex = ref(0);
 const buttonText = computed(() => {
   return participants.loaded ? "Ready" : "Load";
 });
@@ -236,7 +235,16 @@ const createApiUrl = (id) => {
 };
 
 const pickWinners = () => {
+  if (winnersCount.value === 0) return;
+
+  winnersListIndex.value += 1;
   participants.winnersArray(winnersCount.value);
+};
+
+const restartPick = () => {
+  winnersListIndex.value = 0;
+  winnersCount.value = 1;
+  participants.deleteParticipants();
 };
 
 const rerollWinner = (id) => {
@@ -394,9 +402,9 @@ abbr {
 
 .delete-participants {
   height: 2em;
-  width: 100%;
+  width: 50%;
   border: 0;
-  border-radius: 0 0 5px 5px;
+  border-radius: 0 0 0 5px;
   background-color: #d9534f;
   color: white;
   font-size: 14px;
@@ -404,10 +412,36 @@ abbr {
   transition: background-color, 200ms;
   position: absolute;
   bottom: 0;
+  margin-right: 400px;
+}
+
+.delete-full {
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  margin: 0;
+}
+
+.reroll-participants {
+  height: 2em;
+  width: 50%;
+  border: 0;
+  border-radius: 0 0 5px 0;
+  background-color: #008cba;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color, 200ms;
+  position: absolute;
+  bottom: 0;
+  margin-left: 400px;
 }
 
 .delete-participants:hover {
   background-color: #c9302c;
+}
+
+.reroll-participants:hover {
+  background-color: #006687;
 }
 
 .pick-winners {
