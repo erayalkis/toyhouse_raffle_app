@@ -237,6 +237,14 @@ const createApiUrl = (id) => {
 const pickWinners = () => {
   if (winnersCount.value === 0) return;
 
+  console.log(participants.winners);
+  if (participants.winners.length > 0) {
+    const confirmReroll = confirm(
+      "Are you sure you want to reroll all winners?"
+    );
+    if (!confirmReroll) return;
+  }
+
   winnersListIndex.value += 1;
   participants.winnersArray(winnersCount.value);
 };
@@ -248,7 +256,6 @@ const restartPick = () => {
 };
 
 const rerollWinner = (id) => {
-  console.log(id);
   participants.rerollWinner(id);
 };
 </script>
