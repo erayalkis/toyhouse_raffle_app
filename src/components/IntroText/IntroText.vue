@@ -1,17 +1,21 @@
 <template>
-  <div class="text">
-    <h1>Hi there!</h1>
-    <hr />
-    <h3 class="text-sm">
-      This is a free tool for Toyhou.se that let's you pick raffle winners
-      efficiently!
-      <br />
-      To use the app, simply enter the raffle characters link, select any
-      optional rules you want, and load the participants!
-      <br />
-      Afterwards, you can pick any number of winners you want with just the
-      click of a button! :) You may also increase or decrease ticket counts, and
-      delete users from the participants list!
-    </h3>
+  <div
+    class="flex flex-col mt-5 text-toyhouse-dark border border-toyhouse-primary-border rounded-sm"
+  >
+    <template v-for="(text, idx) in textContent" :key="idx">
+      <div class="flex w-full">
+        <div
+          class="bg-toyhouse-bg-secondary w-min pl-6 pr-3 text-right text-sm"
+        >
+          {{ idx + 1 }}
+        </div>
+        <div class="pl-1 text-toyhouse-primary-500 opacity-70">
+          <h1>{{ text }}</h1>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
+<script setup>
+import { textContent } from "./textContent";
+</script>
