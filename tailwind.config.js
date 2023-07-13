@@ -6,6 +6,11 @@ module.exports = {
       colors: {
         "toyhouse-main-dark": "#212529",
         "toyhouse-text-secondary": "#adb1b6",
+        "toyhouse-bg-primary": "#f7f7f7",
+        "toyhouse-border-primary": "#e8e8e8",
+        "toyhouse-text-primary": "#212529",
+        "toyhouse-blue-primary": "#008cba",
+        "toyhouse-blue-secondary": "#006688",
       },
     },
   },
