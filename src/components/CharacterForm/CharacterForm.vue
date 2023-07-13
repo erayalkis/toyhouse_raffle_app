@@ -16,8 +16,5 @@
         Load
       </button>
     </div>
-    <div>
-      <input type="checkbox" />
-    </div>
   </div>
 </template>
