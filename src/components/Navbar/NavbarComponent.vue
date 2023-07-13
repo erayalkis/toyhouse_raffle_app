@@ -1,17 +1,26 @@
 <template>
-  <nav class="flex w-full bg-gray-300">
-    <div class="flex">
-      <router-link class="flex" to="/">
+  <nav
+    class="flex w-full bg-toyhouse-main-dark text-white justify-between items-center"
+  >
+    <h1 class="text-xl ml-3">TOYHOU.RF</h1>
+    <div class="flex items-center mr-auto ml-5">
+      <router-link class="flex items-center" to="/">
         <HomeIcon />
         Home
       </router-link>
-      <router-link class="flex" to="/participants">
+      <router-link class="flex items-center" to="/participants">
         <PeopleIcon />
         Participants
       </router-link>
     </div>
-    <div class="app-status">
-      <h3 :class="{ online: isOnline, offline: !isFetching && !isOnline }">
+    <div class="flex justify-between mr-2 text-xl">
+      <h3 class="mr-2 text-toyhouse-text-secondary">App Status:</h3>
+      <h3
+        :class="{
+          'text-green-600': isOnline,
+          'text-red-600': !isFetching && !isOnline,
+        }"
+      >
         {{ isFetching ? "Fetching..." : isOnline ? "Online" : "Offline" }}
       </h3>
     </div>
