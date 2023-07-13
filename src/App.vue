@@ -1,56 +1,61 @@
 <template>
-    <nav class="navbar">
-      <!-- use the router-link component for navigation. -->
-      <!-- specify the link by passing the `to` prop. -->
-      <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
-      <div class="nav-links">
-        <router-link class="router-link" to="/">
-          <img class="homeIcon" :src="homeUrl" />
-          Home
-        </router-link>
-        <router-link class="router-link" to="/participants">
-          <img class="peopleIcon" :src="peopleUrl" />
-          Participants
-        </router-link>
-      </div>
-      <div class="app-status">
-        <h3
-          :class="{ online: isOnline, offline: !isFetching && !isOnline }"
-        >
-          {{isFetching ? "Fetching..." : isOnline ? "Online" : "Offline"}}
-        </h3>
-      </div>
-    </nav>
-    <!-- route outlet -->
-    <!-- component matched by the route will render here -->
-    <router-view></router-view>
+  <nav class="navbar">
+    <!-- use the router-link component for navigation. -->
+    <!-- specify the link by passing the `to` prop. -->
+    <!-- `<router-link>` will render an `<a>` tag with the correct `href` attribute -->
+    <div class="nav-links">
+      <router-link class="router-link" to="/">
+        <img class="homeIcon" :src="homeUrl" />
+        Home
+      </router-link>
+      <router-link class="router-link" to="/participants">
+        <img class="peopleIcon" :src="peopleUrl" />
+        Participants
+      </router-link>
+    </div>
+    <div class="app-status">
+      <h3 :class="{ online: isOnline, offline: !isFetching && !isOnline }">
+        {{ isFetching ? "Fetching..." : isOnline ? "Online" : "Offline" }}
+      </h3>
+    </div>
+  </nav>
+  <!-- route outlet -->
+  <!-- component matched by the route will render here -->
+  <router-view></router-view>
 
-    <footer>
-      <small><em>
-        This app is not associated with or a part of Toyhou.se. It's only a fan project. Check the repository out
-          <a class="footer-link" href="https://github.com/erayalkis/toyhouse_raffle_App" target="#">here</a>
-      </em></small>
-    </footer>
+  <footer>
+    <small
+      ><em>
+        This app is not associated with or a part of Toyhou.se. It's only a fan
+        project. Check the repository out
+        <a
+          class="footer-link"
+          href="https://github.com/erayalkis/toyhouse_raffle_App"
+          target="#"
+          >here</a
+        >
+      </em></small
+    >
+  </footer>
 </template>
 
-
 <script setup>
-  import homeUrl from '@/assets/home-svgrepo-com.svg?url';
-  import peopleUrl from '@/assets/people-svgrepo-com.svg?url';
-  import { onMounted, ref } from 'vue';
+import homeUrl from "@/assets/home-svgrepo-com.svg?url";
+import peopleUrl from "@/assets/people-svgrepo-com.svg?url";
+import { onMounted, ref } from "vue";
 
-  const isOnline = ref(false);
-  const isFetching = ref(true);
-  onMounted(async () => {
-    console.log("hi")
-    fetch("https://toyhouse-api.onrender.com/app_status").then(async res => {
-      console.log(await res.json());
-      if(res.ok) {
-        isOnline.value = true;
-      }
-      isFetching.value = false;
-    })
+const isOnline = ref(false);
+const isFetching = ref(true);
+onMounted(async () => {
+  console.log("hi");
+  fetch("https://toyhouse-api.onrender.com/app_status").then(async (res) => {
+    console.log(await res.json());
+    if (res.ok) {
+      isOnline.value = true;
+    }
+    isFetching.value = false;
   });
+});
 </script>
 
 <style>
@@ -119,19 +124,23 @@
 }
 
 .router-link:hover .homeIcon {
-  filter: invert(100%) saturate(100%) hue-rotate(160deg) brightness(200%) contrast(98%);
+  filter: invert(100%) saturate(100%) hue-rotate(160deg) brightness(200%)
+    contrast(98%);
 }
 
 .router-link:active .homeIcon {
-  filter: invert(100%) saturate(300%) hue-rotate(160deg) brightness(500%) contrast(98%);
+  filter: invert(100%) saturate(300%) hue-rotate(160deg) brightness(500%)
+    contrast(98%);
 }
 
 .router-link:hover .peopleIcon {
-  filter: invert(100%) saturate(100%) hue-rotate(160deg) brightness(200%) contrast(98%);
+  filter: invert(100%) saturate(100%) hue-rotate(160deg) brightness(200%)
+    contrast(98%);
 }
 
 .router-link:active .peopleIcon {
-  filter: invert(100%) saturate(300%) hue-rotate(160deg) brightness(500%) contrast(98%);
+  filter: invert(100%) saturate(300%) hue-rotate(160deg) brightness(500%)
+    contrast(98%);
 }
 
 .homeIcon {
@@ -162,11 +171,10 @@ footer {
 }
 
 footer a {
-  color:#008cba;
+  color: #008cba;
 }
 
 footer a:hover {
-  color: #006687
+  color: #006687;
 }
-
 </style>

@@ -1,18 +1,19 @@
-import { createApp } from 'vue/dist/vue.esm-bundler'
-import CharacterForm from './components/CharacterForm.vue';
-import ParticipantsList from './components/ParticipantsList.vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
-import App from './App.vue'
+import { createApp } from "vue/dist/vue.esm-bundler";
+import CharacterForm from "./components/CharacterForm.vue";
+import ParticipantsList from "./components/ParticipantsList.vue";
+import { createRouter, createWebHashHistory } from "vue-router";
+import App from "./App.vue";
+import "./index.css";
 
 const routes = [
-  { path: '/', component: CharacterForm },
-  { path: '/participants', component: ParticipantsList },
+  { path: "/", component: CharacterForm },
+  { path: "/participants", component: ParticipantsList },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
-})
+  routes,
+});
 
 const app = createApp(App);
 app.use(router);
