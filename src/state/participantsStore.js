@@ -4,6 +4,7 @@ import { computed, ref } from "vue";
 export const useParticipantsStore = defineStore("participants", () => {
   const list = ref([]);
   const winners = ref([]);
+  const winnersDuped = ref([]);
   const loaded = computed(() => list.value.length === 0);
 
   const setParticipants = (arr) => (list.value = arr);
@@ -27,22 +28,15 @@ export const useParticipantsStore = defineStore("participants", () => {
   };
 
   const pickWinners = (winnersCount) => {
-    const usersDupedByTicketCount = [];
-
-    list.value.forEach((user) => {
-      let i = user.ticket_count;
-      for (i; i > 0; i--) {
-        usersDupedByTicketCount.push(user.profile);
-      }
-    });
+    setDupedWinners();
 
     // Set of usernames
     let seenUsers = new Set();
     let winners = [];
 
     for (winnersCount; winnersCount > 0; winnersCount--) {
-      const idx = getRandomIndex(usersDupedByTicketCount.value.length);
-      const selectedUser = usersDupedByTicketCount[idx];
+      const idx = getRandomIndex(winnersDuped.value.length);
+      const selectedUser = winnersDuped.value[idx];
 
       const username = selectedUser.profile.name;
       let inSeen = seenUsers.has(username);
@@ -55,8 +49,37 @@ export const useParticipantsStore = defineStore("participants", () => {
     return winners;
   };
 
+  const setDupedWinners = () => {
+    winnersDuped.value = [];
+
+    const usersDupedByTicketCount = [];
+
+    list.value.forEach((user) => {
+      let i = user.ticket_count;
+      for (i; i > 0; i--) {
+        usersDupedByTicketCount.push(user.profile);
+      }
+    });
+
+    winnersDuped.value = usersDupedByTicketCount;
+  };
+
   const getRandomIndex = (length) => Math.floor(Math.random() * length);
-  const rerollWinner = () => {};
+  const rerollWinner = (username) => {
+    const targetIdx = winners.value.findIndex(
+      (user) => user.profile.name === username
+    );
+
+    const dupedWinnersWithoutTarget = winnersDuped.value.filter(
+      (user) => user.profile.name != username
+    );
+
+    const newWinnerIndex = getRandomIndex(
+      dupedWinnersWithoutTarget.value.length
+    );
+
+    winners.value[targetIdx] = dupedWinnersWithoutTarget[newWinnerIndex];
+  };
 
   return {
     list,
