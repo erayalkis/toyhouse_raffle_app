@@ -3,7 +3,14 @@ import { ref } from "vue";
 
 export const useOptionsStore = defineStore("options", () => {
   const defaultOptions = {
-    character_id: "",
+    character: {
+      id: "",
+      image: "",
+      owner: {
+        name: "",
+        profile: "",
+      },
+    },
     must_comment: false,
     comment_points: 1,
     must_subscribe: false,
