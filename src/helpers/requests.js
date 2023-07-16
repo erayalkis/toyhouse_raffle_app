@@ -7,14 +7,14 @@ export const get = async (url) => {
   return json;
 };
 
-export const getCharacter = async (character) => {
-  let url = addPathToUrl(`/character/${character.id}`);
+export const getCharacter = async (characterId) => {
+  let url = addPathToUrl(`/character/${characterId}`);
   let json = get(url);
   return json;
 };
 
-export const getCharacterDetails = async (character) => {
-  let url = addPathToUrl(`/character/${character.id}`);
+export const getCharacterDetails = async (characterId) => {
+  let url = addPathToUrl(`/character/${characterId}/details`);
   let json = get(url);
   return json;
 };
