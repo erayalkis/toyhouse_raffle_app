@@ -1,10 +1,10 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 export const useOptionsStore = defineStore("options", () => {
   const defaultOptions = {
     character: {
-      id: "",
+      name: "",
       image: "",
       owner: {
         name: "",
@@ -17,35 +17,57 @@ export const useOptionsStore = defineStore("options", () => {
     subscribe_points: 1,
   };
 
-  const characters = ref(null);
+  const opts = ref([]);
+  const loadedMain = computed(() => opts.value.length > 0);
+
+  const addCharacter = (character) => {
+    if (characterAlreadyAdded(character)) return;
+
+    let newOpts = defaultOptions;
+    newOpts.character = character;
+
+    opts.value.push(newOpts);
+  };
 
   const resetCharacter = (character) => {
     let characterId = character.id;
 
-    let characterIdx = characters.value.findIndex(
-      (chr) => chr.id === characterId
+    let characterIdx = opts.value.findIndex(
+      (opt) => opt.character.id === characterId
     );
-    let newOpts = defaultOptions;
-    newOpts.character_id = characterId;
 
-    characters.value[characterIdx] = newOpts;
+    let newOpts = defaultOptions;
+    newOpts.character = character;
+
+    opts.value[characterIdx] = newOpts;
   };
 
   const updateCharacter = (character) => {
     let characterId = character.id;
 
-    let characterIdx = characters.value.findIndex(
-      (chr) => chr.id === characterId
+    let characterIdx = opts.value.findIndex(
+      (opt) => opt.character.id === characterId
     );
 
-    characters.value[characterIdx] = character;
+    opts.value[characterIdx] = character;
   };
 
   const removeCharacter = (character) => {
     let characterId = character.id;
 
-    characters.value = characters.value.filter((chr) => chr.id !== characterId);
+    opts.value = opts.value.filter((opt) => opt.character.id !== characterId);
   };
 
-  return { characters, resetCharacter, updateCharacter, removeCharacter };
+  const characterAlreadyAdded = (character) => {
+    return opts.value.some((opt) => opt.character.id === character.id);
+  };
+
+  return {
+    opts,
+    loadedMain,
+    addCharacter,
+    resetCharacter,
+    updateCharacter,
+    removeCharacter,
+  };
 });
