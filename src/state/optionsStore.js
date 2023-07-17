@@ -15,6 +15,7 @@ export const useOptionsStore = defineStore("options", () => {
     comment_points: 1,
     must_subscribe: false,
     subscribe_points: 1,
+    favorite_points: 1,
   };
 
   const opts = ref([]);

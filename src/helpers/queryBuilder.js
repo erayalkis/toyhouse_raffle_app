@@ -3,7 +3,7 @@ import { API_URL } from "./constants";
 export const addPathToUrl = (path) => API_URL + path;
 
 export const makeQueryFromOptions = (opts) => {
-  let url = API_URL + `/raffle/${opts.character_id}`;
+  let url = API_URL + `/raffle/${opts.character.id}`;
   let queryStr = "";
 
   if (opts.must_comment) {

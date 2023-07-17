@@ -45,6 +45,7 @@
         </button>
         <button
           class="bg-toyhouse-blue-primary text-white p-2 rounded-md transition duration-300 ease-out hover:bg-toyhouse-blue-secondary"
+          @click="loadParticipants"
         >
           Load participants
         </button>
@@ -60,6 +61,7 @@ import CogIcon from "@/assets/components/CogIcon.vue";
 import UserIcon from "@/assets/components/UserIcon.vue";
 import CharacterOptions from "./CharacterOptions.vue";
 import { useParticipantsStore } from "@/state/participantsStore";
+import { makeQueryFromOptions } from "@/helpers/queryBuilder";
 
 let optsStore = useOptionsStore();
 let { setParticipants } = useParticipantsStore();
@@ -75,6 +77,10 @@ const resetRaffle = () => {
 
   opts.value = [];
   setParticipants([]);
+};
+const loadParticipants = () => {
+  let url = makeQueryFromOptions(mainOpt.value);
+  console.log(url);
 };
 </script>
 <style>
