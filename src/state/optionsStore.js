@@ -23,7 +23,7 @@ export const useOptionsStore = defineStore("options", () => {
   const addCharacter = (character) => {
     if (characterAlreadyAdded(character)) return;
 
-    let newOpts = defaultOptions;
+    let newOpts = Object.assign({}, defaultOptions);
     newOpts.character = character;
 
     opts.value.push(newOpts);

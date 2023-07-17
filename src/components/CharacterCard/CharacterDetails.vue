@@ -39,8 +39,9 @@
       <div class="flex mt-2 text-sm md:m-0 lg:text-lg md:gap-1">
         <button
           class="bg-red-600 text-white p-2 rounded-md transition duration-300 ease-out hover:bg-red-700"
+          @click="resetRaffle"
         >
-          Load new character
+          Reset raffle
         </button>
         <button
           class="bg-toyhouse-blue-primary text-white p-2 rounded-md transition duration-300 ease-out hover:bg-toyhouse-blue-secondary"
@@ -58,13 +59,23 @@ import { computed, ref } from "vue";
 import CogIcon from "@/assets/components/CogIcon.vue";
 import UserIcon from "@/assets/components/UserIcon.vue";
 import CharacterOptions from "./CharacterOptions.vue";
+import { useParticipantsStore } from "@/state/participantsStore";
 
 let optsStore = useOptionsStore();
+let { setParticipants } = useParticipantsStore();
 let { opts } = storeToRefs(optsStore);
 let mainOpt = computed(() => opts.value[0]);
 let mainCharacter = computed(() => mainOpt.value.character);
 let showOptions = ref(false);
-let toggleShowOpts = () => (showOptions.value = !showOptions.value);
+
+const toggleShowOpts = () => (showOptions.value = !showOptions.value);
+const resetRaffle = () => {
+  let conf = confirm("Are you sure you wish to reset all data?");
+  if (!conf) return;
+
+  opts.value = [];
+  setParticipants([]);
+};
 </script>
 <style>
 .rotate {

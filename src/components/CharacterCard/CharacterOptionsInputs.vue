@@ -1,7 +1,7 @@
 <template>
   <div class="md:flex md:justify-between">
     <div class="mb-5">
-      <div class="flex items-center gap-1">
+      <div class="flex items-center gap-1.5">
         <h1 class="text-lg">Should subscribe?</h1>
         <input
           type="checkbox"
@@ -9,7 +9,7 @@
           v-model="mainOpt.must_subscribe"
         />
       </div>
-      <div class="items-center gap-1">
+      <div class="gap-1 mt-2">
         <div class="flex gap-1">
           <SubscribeIcon class="w-5" />
           <h1>Subscription points:</h1>
@@ -19,7 +19,7 @@
       </div>
     </div>
     <div class="mb-5">
-      <div class="flex items-center gap-1">
+      <div class="flex items-center gap-1.5">
         <h1 class="text-lg">Should comment?</h1>
         <input
           type="checkbox"
@@ -27,7 +27,7 @@
           v-model="mainOpt.must_comment"
         />
       </div>
-      <div class="items-center gap-1">
+      <div class="gap-1 mt-2">
         <div class="flex gap-1">
           <CommentIcon class="w-5" />
           <h1>Comment points:</h1>
