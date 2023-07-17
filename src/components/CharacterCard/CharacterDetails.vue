@@ -1,17 +1,12 @@
 <template>
   <div>
-    <div
-      class="options-screen absolute bg-blue-500 w-full h-full top-0 left-0 p-10"
-      :class="{ show: showOptions }"
-    >
-      <h1>Options</h1>
-    </div>
+    <CharacterOptions :show="showOptions" />
 
     <div class="flex justify-between">
       <h3 class="text-xl font-semibold">Toyhouse Raffle</h3>
       <CogIcon
-        class="z-50 transition duration-900 ease-out"
-        :class="{ 'text-white': showOptions }"
+        class="z-50 transition duration-900 ease-out sticky"
+        :class="{ rotate: showOptions }"
         @click="toggleShowOpts"
       />
     </div>
@@ -19,7 +14,7 @@
     <hr class="my-2" />
 
     <div class="items-center flex-wrap md:flex md:justify-between">
-      <div class="flex items-center">
+      <div class="flex items-center gap-2">
         <img
           :src="mainCharacter.image"
           class="border border-toyhouse-border-primary p-2 bg-white rounded-md w-24 md:w-34 xl:w-44"
@@ -62,6 +57,7 @@ import { storeToRefs } from "pinia";
 import { computed, ref } from "vue";
 import CogIcon from "@/assets/components/CogIcon.vue";
 import UserIcon from "@/assets/components/UserIcon.vue";
+import CharacterOptions from "./CharacterOptions.vue";
 
 let optsStore = useOptionsStore();
 let { opts } = storeToRefs(optsStore);
@@ -71,16 +67,8 @@ let showOptions = ref(false);
 let toggleShowOpts = () => (showOptions.value = !showOptions.value);
 </script>
 <style>
-.options-screen {
-  margin-left: 2000px;
-  opacity: 0%;
-  transition-property: margin, opacity;
-  transition-duration: 700ms;
-  transition-timing-function: ease-out;
-}
-
-.options-screen.show {
-  margin-left: 0px;
-  opacity: 100%;
+.rotate {
+  transform: rotate(-90deg);
+  transition: transform 2s ease-out;
 }
 </style>
