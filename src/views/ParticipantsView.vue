@@ -1,10 +1,8 @@
 <template>
   <main>
-    <CharacterForm />
-    <IntroText />
+    <ParticipantsList />
   </main>
 </template>
 <script setup>
-import CharacterForm from "@/components/CharacterCard/CharacterContainer.vue";
-import IntroText from "@/components/IntroText/IntroText.vue";
+import ParticipantsList from "@/components/Particiapnts/ParticipantsList.vue";
 </script>
