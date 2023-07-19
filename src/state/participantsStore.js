@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 
 export const useParticipantsStore = defineStore("participants", () => {
-  const list = ref([]);
+  const list = ref({});
   const winners = ref([]);
   const winnersDuped = ref([]);
   const loaded = computed(() => list.value.length === 0);
