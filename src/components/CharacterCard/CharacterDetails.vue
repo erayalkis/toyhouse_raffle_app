@@ -61,7 +61,7 @@ import CogIcon from "@/assets/components/CogIcon.vue";
 import UserIcon from "@/assets/components/UserIcon.vue";
 import CharacterOptions from "./CharacterOptions.vue";
 import { useParticipantsStore } from "@/state/participantsStore";
-import { makeQueryFromOptions } from "@/helpers/queryBuilder";
+import { getRaffleTicketsForAll } from "@/helpers/requests";
 
 let optsStore = useOptionsStore();
 let { setParticipants } = useParticipantsStore();
@@ -78,9 +78,9 @@ const resetRaffle = () => {
   opts.value = [];
   setParticipants([]);
 };
-const loadParticipants = () => {
-  let url = makeQueryFromOptions(mainOpt.value);
-  console.log(url);
+const loadParticipants = async () => {
+  let json = await getRaffleTicketsForAll(opts.value);
+  console.log(json);
 };
 </script>
 <style>
