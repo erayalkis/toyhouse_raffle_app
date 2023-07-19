@@ -4,7 +4,7 @@ export const addPathToUrl = (path) => API_URL + path;
 
 export const makeQueryFromOptions = (opts) => {
   let url = API_URL + `/raffle/${opts.character.id}`;
-  let queryStr = "";
+  let queryStr = "?";
 
   if (opts.must_comment) {
     queryStr += `&must_comment=true&comment_ticket_count=${opts.comment_points}`;
