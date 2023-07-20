@@ -14,7 +14,7 @@
     <hr class="my-2" />
 
     <div class="items-center flex-wrap md:flex md:justify-between">
-      <div class="flex items-center gap-2">
+      <div class="flex flex-col items-center gap-2 md:flex-row">
         <img
           :src="mainCharacter.image"
           class="border border-toyhouse-border-primary p-2 bg-white rounded-md w-24 md:w-34 xl:w-44"
@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div class="flex mt-2 text-sm md:m-0 lg:text-lg md:gap-1">
+      <div class="flex mt-2 text-sm md:m-0 lg:text-lg gap-1">
         <button
           class="bg-red-600 text-white p-2 rounded-md transition duration-300 ease-out hover:bg-red-700"
           @click="resetRaffle"
