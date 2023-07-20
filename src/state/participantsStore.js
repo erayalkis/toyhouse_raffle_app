@@ -17,15 +17,17 @@ export const useParticipantsStore = defineStore("participants", () => {
   });
 
   const setParticipants = (obj) => (list.value = obj);
+  const setWinners = (obj) => (winners.value = obj);
   const setSearchResults = (obj) => (searchResults.value = obj);
 
   const deleteParticipants = () => {
     list.value = {};
-    winners.value = {};
+    deleteWinners();
     deleteSearchResults();
   };
 
   const deleteSearchResults = () => (searchResults.value = {});
+  const deleteWinners = () => (winners.value = {});
 
   const remove = (user) => delete list.value[user];
 
@@ -44,7 +46,7 @@ export const useParticipantsStore = defineStore("participants", () => {
     let seenUsers = new Set();
     let winners = {};
 
-    for (winnersCount; winnersCount > 0; winnersCount--) {
+    while (winnersCount > 0) {
       const idx = getRandomIndex(usersByTicketCount.value.length);
       const selectedUser = usersByTicketCount.value[idx];
 
@@ -53,6 +55,7 @@ export const useParticipantsStore = defineStore("participants", () => {
       if (!inSeen) {
         seenUsers.add(username);
         winners[username] = selectedUser;
+        winnersCount--;
       }
     }
 
@@ -103,6 +106,7 @@ export const useParticipantsStore = defineStore("participants", () => {
     winners,
     loaded,
     setParticipants,
+    setWinners,
     deleteParticipants,
     remove,
     increment,
