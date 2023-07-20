@@ -43,12 +43,22 @@
         >
           Reset raffle
         </button>
-        <button
-          class="bg-toyhouse-blue-primary text-white p-2 rounded-md transition duration-300 ease-out hover:bg-toyhouse-blue-secondary"
-          @click="loadParticipants"
-        >
-          Load participants
-        </button>
+        <template v-if="Object.keys(list).length">
+          <button
+            class="bg-toyhouse-blue-primary text-white p-2 rounded-md transition duration-300 ease-out hover:bg-toyhouse-blue-secondary"
+            @click="pickWinners"
+          >
+            Pick Winners
+          </button>
+        </template>
+        <template v-else>
+          <button
+            class="bg-toyhouse-blue-primary text-white p-2 rounded-md transition duration-300 ease-out hover:bg-toyhouse-blue-secondary"
+            @click="loadParticipants"
+          >
+            Load participants
+          </button>
+        </template>
       </div>
     </div>
   </div>
@@ -62,9 +72,14 @@ import UserIcon from "@/assets/components/UserIcon.vue";
 import CharacterOptions from "./CharacterOptions.vue";
 import { useParticipantsStore } from "@/state/participantsStore";
 import { getRaffleTicketsForAll } from "@/helpers/requests";
+import { useMessagesStore } from "@/state/messagesStore";
 
 let optsStore = useOptionsStore();
-let { setParticipants } = useParticipantsStore();
+let pStore = useParticipantsStore();
+let mStore = useMessagesStore();
+let { setParticipants } = pStore;
+let { setLoading, setError, clearLoading, clearError } = mStore;
+let { list } = storeToRefs(pStore);
 let { opts } = storeToRefs(optsStore);
 let mainOpt = computed(() => opts.value[0]);
 let mainCharacter = computed(() => mainOpt.value.character);
@@ -78,10 +93,20 @@ const resetRaffle = () => {
   opts.value = [];
   setParticipants([]);
 };
+
 const loadParticipants = async () => {
-  let json = await getRaffleTicketsForAll(opts.value);
-  setParticipants(json);
+  setLoading("Loading participants...");
+  try {
+    let json = await getRaffleTicketsForAll(opts.value);
+    setParticipants(json);
+  } catch (err) {
+    setError(err);
+    setTimeout(() => clearError(), 1500);
+  }
+  clearLoading();
 };
+
+const pickWinners = () => {};
 </script>
 <style>
 .rotate {
