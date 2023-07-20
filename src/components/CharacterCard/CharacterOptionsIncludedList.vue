@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-neutral-100 border border-toyhouse-border-primary w-full p-2 flex gap-4 overflow-x-auto rounded-md rounded-b-none"
+    class="bg-neutral-100 border border-toyhouse-border-primary w-full p-2 flex gap-4 overflow-x-auto rounded-md h-42 rounded-b-none"
   >
     <template v-for="opt in opts.slice(1)" :key="opt.character.id">
       <div class="flex-col p-1">
