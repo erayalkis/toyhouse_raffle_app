@@ -31,7 +31,7 @@ const url = ref("");
 const messagesStore = useMessagesStore();
 const optionsStore = useOptionsStore();
 
-const { setError, setLoading, clearLoading } = messagesStore;
+const { setError, clearError, setLoading, clearLoading } = messagesStore;
 const { addCharacter } = optionsStore;
 const { opts } = storeToRefs(optionsStore);
 
@@ -66,6 +66,9 @@ const loadCharacter = async (id) => {
   } catch (err) {
     setError(err);
     console.error(err);
+    setTimeout(() => {
+      clearError();
+    }, 1500);
   } finally {
     clearLoading();
     url.value = "";
