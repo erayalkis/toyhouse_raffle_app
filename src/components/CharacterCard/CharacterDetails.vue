@@ -46,7 +46,7 @@
         <template v-if="Object.keys(list).length">
           <button
             class="bg-toyhouse-blue-primary text-white p-2 rounded-md transition duration-300 ease-out hover:bg-toyhouse-blue-secondary"
-            @click="pickWinners"
+            @click="pick"
           >
             Pick Winners
           </button>
@@ -77,7 +77,7 @@ import { useMessagesStore } from "@/state/messagesStore";
 let optsStore = useOptionsStore();
 let pStore = useParticipantsStore();
 let mStore = useMessagesStore();
-let { setParticipants } = pStore;
+let { setParticipants, pickWinners } = pStore;
 let { setLoading, setError, clearLoading, clearError } = mStore;
 let { list } = storeToRefs(pStore);
 let { opts } = storeToRefs(optsStore);
@@ -106,7 +106,10 @@ const loadParticipants = async () => {
   clearLoading();
 };
 
-const pickWinners = () => {};
+const pick = () => {
+  const res = pickWinners(1);
+  console.log(res);
+};
 </script>
 <style>
 .rotate {
