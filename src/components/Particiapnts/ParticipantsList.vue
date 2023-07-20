@@ -1,6 +1,9 @@
 <template>
   <div class="flex flex-col justify-center items-center p-1 mt-2">
     <template v-if="chunked.length">
+      <h1 class="my-1 mb-2">
+        Displaying {{ Object.keys(list).length }} participant(s).
+      </h1>
       <ParticipantsListPaginator
         :chunked="chunked"
         :current-index="currentIndex"
@@ -8,10 +11,12 @@
         @decrement="decrementIndex"
         @set="setIndex"
       />
+      <ParticipantsListSearchBar />
+
       <ParticipantsCard :chunked="chunked" :current-index="currentIndex" />
     </template>
     <template v-else>
-      <div>
+      <div class="border border-toyhouse-border-primary p-5 rounded-md">
         <h1 class="text-xl font-semibold text-center">
           No participants to show! <br />
           Please load participants from the Home page.
@@ -27,10 +32,17 @@ import { ref, computed } from "vue";
 import { chunkArray } from "@/helpers/requests";
 import ParticipantsCard from "./ParticipantsCard.vue";
 import ParticipantsListPaginator from "./ParticipantsListPaginator.vue";
+import ParticipantsListSearchBar from "./ParticipantsListSearchBar.vue";
 
 const pStore = useParticipantsStore();
-const { list } = storeToRefs(pStore);
-const chunked = computed(() => chunkArray(Object.keys(list.value), 30));
+const { list, searchResults } = storeToRefs(pStore);
+const chunked = computed(() => {
+  if (Object.keys(searchResults.value).length) {
+    return chunkArray(Object.keys(searchResults.value), 30);
+  }
+
+  return chunkArray(Object.keys(list.value), 30);
+});
 const currentIndex = ref(0);
 
 const incrementIndex = () => (currentIndex.value += 1);

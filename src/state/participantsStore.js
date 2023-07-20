@@ -3,16 +3,20 @@ import { computed, ref } from "vue";
 
 export const useParticipantsStore = defineStore("participants", () => {
   const list = ref({});
+  const searchResults = ref({});
   const winners = ref({});
   const usersByTicketCount = ref([]);
   const loaded = computed(() => Object.keys(list.value).length === 0);
 
   const setParticipants = (obj) => (list.value = obj);
+  const setSearchResults = (obj) => (searchResults.value = obj);
 
   const deleteParticipants = () => {
-    list.value = [];
-    winners.value = [];
+    list.value = {};
+    winners.value = {};
   };
+
+  const deleteSearchResults = () => (searchResults.value = {});
 
   const remove = (user) => delete list.value[user];
 
@@ -72,6 +76,18 @@ export const useParticipantsStore = defineStore("participants", () => {
     winners.value[username] = dupedWinnersWithoutTarget[newWinnerIndex];
   };
 
+  const getUsersWithMatchingName = (username) => {
+    let matches = {};
+    let usernames = Object.keys(list.value).filter((userKey) => {
+      console.log(userKey, username);
+      return userKey.toLowerCase().includes(username.toLowerCase());
+    });
+
+    usernames.forEach((username) => (matches[username] = list.value[username]));
+
+    return matches;
+  };
+
   return {
     list,
     winners,
@@ -84,5 +100,9 @@ export const useParticipantsStore = defineStore("participants", () => {
     pickWinners,
     getRandomIndex,
     rerollWinner,
+    getUsersWithMatchingName,
+    searchResults,
+    setSearchResults,
+    deleteSearchResults,
   };
 });
