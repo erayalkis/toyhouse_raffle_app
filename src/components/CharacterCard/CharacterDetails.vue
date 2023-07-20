@@ -80,7 +80,7 @@ const resetRaffle = () => {
 };
 const loadParticipants = async () => {
   let json = await getRaffleTicketsForAll(opts.value);
-  console.log(json);
+  setParticipants(json);
 };
 </script>
 <style>
