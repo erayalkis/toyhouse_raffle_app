@@ -28,21 +28,14 @@
 <script setup>
 import { useParticipantsStore } from "@/state/participantsStore";
 import { storeToRefs } from "pinia";
-import { ref, computed } from "vue";
-import { chunkArray } from "@/helpers/requests";
+import { ref } from "vue";
 import ParticipantsCard from "./ParticipantsCard.vue";
 import ParticipantsListPaginator from "./ParticipantsListPaginator.vue";
 import ParticipantsListSearchBar from "./ParticipantsListSearchBar.vue";
 
 const pStore = useParticipantsStore();
-const { list, searchResults } = storeToRefs(pStore);
-const chunked = computed(() => {
-  if (Object.keys(searchResults.value).length) {
-    return chunkArray(Object.keys(searchResults.value), 30);
-  }
+const { list, chunked } = storeToRefs(pStore);
 
-  return chunkArray(Object.keys(list.value), 30);
-});
 const currentIndex = ref(0);
 
 const incrementIndex = () => (currentIndex.value += 1);

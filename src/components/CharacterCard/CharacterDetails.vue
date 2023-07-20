@@ -77,7 +77,7 @@ import { useMessagesStore } from "@/state/messagesStore";
 let optsStore = useOptionsStore();
 let pStore = useParticipantsStore();
 let mStore = useMessagesStore();
-let { setParticipants, pickWinners } = pStore;
+let { setParticipants, pickWinners, deleteParticipants } = pStore;
 let { setLoading, setError, clearLoading, clearError } = mStore;
 let { list } = storeToRefs(pStore);
 let { opts } = storeToRefs(optsStore);
@@ -91,7 +91,7 @@ const resetRaffle = () => {
   if (!conf) return;
 
   opts.value = [];
-  setParticipants([]);
+  deleteParticipants();
 };
 
 const loadParticipants = async () => {

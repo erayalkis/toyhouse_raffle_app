@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
+import { chunkArray } from "@/helpers/requests";
 
 export const useParticipantsStore = defineStore("participants", () => {
   const list = ref({});
@@ -7,6 +8,13 @@ export const useParticipantsStore = defineStore("participants", () => {
   const winners = ref({});
   const usersByTicketCount = ref([]);
   const loaded = computed(() => Object.keys(list.value).length === 0);
+  const chunked = computed(() => {
+    if (Object.keys(searchResults.value).length) {
+      return chunkArray(Object.keys(searchResults.value), 30);
+    }
+
+    return chunkArray(Object.keys(list.value), 30);
+  });
 
   const setParticipants = (obj) => (list.value = obj);
   const setSearchResults = (obj) => (searchResults.value = obj);
@@ -14,6 +22,7 @@ export const useParticipantsStore = defineStore("participants", () => {
   const deleteParticipants = () => {
     list.value = {};
     winners.value = {};
+    deleteSearchResults();
   };
 
   const deleteSearchResults = () => (searchResults.value = {});
@@ -90,6 +99,7 @@ export const useParticipantsStore = defineStore("participants", () => {
 
   return {
     list,
+    chunked,
     winners,
     loaded,
     setParticipants,
