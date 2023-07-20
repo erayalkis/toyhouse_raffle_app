@@ -46,7 +46,7 @@ export const useParticipantsStore = defineStore("participants", () => {
     let seenUsers = new Set();
     let winners = {};
 
-    while (winnersCount > 0) {
+    for (winnersCount; winnersCount > 0; winnersCount--) {
       const idx = getRandomIndex(usersByTicketCount.value.length);
       const selectedUser = usersByTicketCount.value[idx];
 
@@ -55,7 +55,9 @@ export const useParticipantsStore = defineStore("participants", () => {
       if (!inSeen) {
         seenUsers.add(username);
         winners[username] = selectedUser;
-        winnersCount--;
+      } else {
+        winnersCount += 1;
+        continue;
       }
     }
 
