@@ -1,19 +1,12 @@
-import { createApp } from 'vue/dist/vue.esm-bundler'
-import CharacterForm from './components/CharacterForm.vue';
-import ParticipantsList from './components/ParticipantsList.vue';
-import { createRouter, createWebHashHistory } from 'vue-router';
-import App from './App.vue'
+import { createApp } from "vue/dist/vue.esm-bundler";
+import { router } from "@/router/router.js";
+import App from "./App.vue";
+import "./index.css";
+import { createPinia } from "pinia";
 
-const routes = [
-  { path: '/', component: CharacterForm },
-  { path: '/participants', component: ParticipantsList },
-];
-
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-})
-
+const pinia = createPinia();
 const app = createApp(App);
+
 app.use(router);
+app.use(pinia);
 app.mount("#app");

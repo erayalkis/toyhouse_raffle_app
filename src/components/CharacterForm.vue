@@ -134,6 +134,7 @@
       <h3 class="loadingMsg">{{ messages.loading }}</h3>
     </div>
   </div>
+  <h1 class="text-white bg-red-500">ababa</h1>
 
   <div class="text">
     <h1>Hi there!</h1>
