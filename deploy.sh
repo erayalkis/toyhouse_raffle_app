@@ -24,7 +24,7 @@ cd dist
 git init
 git add -A
 git commit -m 'Deploy commit'
-git push -f git@github.com:erayalkis/toyhouse_raffle_app.git master:gh-pages && "\n[ ${GREEN}OK${NC} ] PUSH SUCCESSFUL\n"
+git push -f git@github.com:erayalkis/toyhouse_raffle_app.git main:gh-pages
 cd -
 
 printf "\n[ ${GREEN}OK${NC} ] DEPLOY PROCESS COMPLETED SUCCESSFULLY"
