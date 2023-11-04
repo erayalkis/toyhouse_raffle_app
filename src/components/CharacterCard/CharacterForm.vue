@@ -59,6 +59,10 @@ const loadCharacter = async (id) => {
     ensureCharacterUnique(id);
 
     let details = await getCharacterDetails(id);
+    console.log(details);
+    if (details.error) {
+      throw Error(details.error);
+    }
     if (details.name === "") {
       throw Error("Something went wrong while loading your character!");
     }
