@@ -50,7 +50,6 @@ const ensureCharacterUnique = (id) => {
 };
 
 const characterExistsInOpts = (id) => {
-  console.log(opts.value, id);
   return opts.value.some((opt) => opt.character.id === id);
 };
 
@@ -58,9 +57,8 @@ const loadCharacter = async (id) => {
   try {
     ensureCharacterUnique(id);
 
-    let details = await getCharacterDetails(id);
-    console.log(details);
-    if (details.error) {
+    const details = await getCharacterDetails(id);
+    if (details?.error) {
       throw Error(details.error);
     }
     if (details.name === "") {

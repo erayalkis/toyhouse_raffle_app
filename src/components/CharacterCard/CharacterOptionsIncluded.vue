@@ -53,7 +53,6 @@ const ensureCharacterUnique = (id) => {
 };
 
 const characterExistsInOpts = (id) => {
-  console.log(opts.value, id);
   return opts.value.some((opt) => opt.character.id === id);
 };
 

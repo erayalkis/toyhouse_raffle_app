@@ -18,7 +18,6 @@
   import { defineProps } from 'vue';
   const props = defineProps(['username', 'details']);
   const addTicket = (key) => {
-    console.log(!(props.username in participants.changed));
     if(!(props.username in participants.changed)) {
       participants.changed[props.username] = { ...props.details };
     }

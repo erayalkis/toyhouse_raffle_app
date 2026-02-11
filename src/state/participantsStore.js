@@ -93,7 +93,6 @@ export const useParticipantsStore = defineStore("participants", () => {
   const getUsersWithMatchingName = (username) => {
     let matches = {};
     let usernames = Object.keys(list.value).filter((userKey) => {
-      console.log(userKey, username);
       return userKey.toLowerCase().includes(username.toLowerCase());
     });
 

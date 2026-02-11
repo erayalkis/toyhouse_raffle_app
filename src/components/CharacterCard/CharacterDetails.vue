@@ -144,7 +144,6 @@ const loadParticipants = async () => {
 };
 
 const pick = () => {
-  console.log(winnerCount.value, Object.keys(list.value).length);
   if (winnerCount.value > Object.keys(list.value).length) {
     setError("Winner count cannot be higher than participant count!");
     setTimeout(() => clearError(), 1500);

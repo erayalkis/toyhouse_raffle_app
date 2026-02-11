@@ -157,6 +157,7 @@
 import { messages } from "@/state/messages";
 import { participants } from "@/state/participants";
 import { ref, computed, watch } from "vue";
+import { API_URL } from "@/helpers/constants";
 
 const urlInput = ref("");
 const shouldComment = ref(false);
@@ -203,16 +204,16 @@ const fetchTickets = async (id) => {
   try {
     users = await fetch(createApiUrl(id));
   } catch (e) {
-    console.log(e);
+    console.error(e);
     messages.setError("Invalid character link or subscribers hidden!");
+    messages.loading = "";
+    return;
   }
   messages.loading = "";
 
   if (!users.ok) {
     participants.deleteParticipants(false);
     messages.setError("Invalid character link or subscribers hidden!");
-
-    console.log(messages.error);
     return;
   }
   participants.loaded = true;
@@ -220,7 +221,7 @@ const fetchTickets = async (id) => {
 };
 
 const createApiUrl = (id) => {
-  let base = `https://toyhouse-api.onrender.com/raffle/${id}?`;
+  let base = `${API_URL}/raffle/${id}?`;
 
   if (shouldComment.value) {
     base += "must_comment=true&";
@@ -238,7 +239,6 @@ const createApiUrl = (id) => {
 const pickWinners = () => {
   if (winnersCount.value === 0) return;
 
-  console.log(participants.winners);
   if (participants.winners.length > 0) {
     const confirmReroll = confirm(
       "Are you sure you want to reroll all winners?"

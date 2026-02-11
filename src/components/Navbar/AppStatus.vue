@@ -14,18 +14,22 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { API_URL } from "@/helpers/constants";
 
 const isOnline = ref(false);
-const isFetching = ref(false);
-// onMounted(async () => {
-//   console.log("hi");
-//   fetch("https://toyhouse-api.onrender.com/app_status").then(async (res) => {
-//     console.log(await res.json());
-//     if (res.ok) {
-//       isOnline.value = true;
-//     }
-//     isFetching.value = false;
-//   });
-// });
+const isFetching = ref(true);
+
+onMounted(async () => {
+  try {
+    const res = await fetch(`${API_URL}/app_status`);
+    if (res.ok) {
+      isOnline.value = true;
+    }
+  } catch (error) {
+    isOnline.value = false;
+  } finally {
+    isFetching.value = false;
+  }
+});
 </script>

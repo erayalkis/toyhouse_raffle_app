@@ -1,9 +1,11 @@
 import { addPathToUrl, makeQueryFromOptions } from "./queryBuilder";
 
 export const get = async (url) => {
-  let res = await fetch(url);
-  let json = await res.json();
-
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`HTTP error! status: ${res.status}`);
+  }
+  const json = await res.json();
   return json;
 };
 
@@ -20,9 +22,8 @@ export const getCharacterDetails = async (characterId) => {
 };
 
 export const getRaffleTickets = async (options) => {
-  let url = makeQueryFromOptions(options);
-  console.log(url);
-  let json = get(url);
+  const url = makeQueryFromOptions(options);
+  const json = await get(url);
   return json;
 };
 

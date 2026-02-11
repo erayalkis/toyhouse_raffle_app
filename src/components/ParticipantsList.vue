@@ -40,7 +40,6 @@
       ([key]) => key.toLowerCase().includes(query.value.toLowerCase()) 
     )
 
-    console.log(filtered);
     return filtered;
   })
 
